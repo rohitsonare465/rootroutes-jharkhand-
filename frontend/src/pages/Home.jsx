@@ -196,64 +196,134 @@ const Home = () => {
   );
 
   return (
-    <div className="min-h-screen bg-gray-50">
-      {/* Clean Hero Section */}
-      <section className="relative bg-white">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20">
+    <div className="min-h-screen bg-gradient-to-br from-slate-50 to-blue-50">
+      {/* Enhanced Hero Section */}
+      <section className="relative overflow-hidden">
+        {/* Background Pattern */}
+        <div className="absolute inset-0">
+          <div className="absolute inset-0 bg-gradient-to-r from-blue-600/10 to-emerald-600/10"></div>
+          <div className="absolute top-0 left-0 w-full h-full">
+            <div className="absolute top-10 left-10 w-72 h-72 bg-blue-400 rounded-full mix-blend-multiply filter blur-xl opacity-20 animate-blob"></div>
+            <div className="absolute top-0 right-4 w-72 h-72 bg-emerald-400 rounded-full mix-blend-multiply filter blur-xl opacity-20 animate-blob animation-delay-2000"></div>
+            <div className="absolute -bottom-8 left-20 w-72 h-72 bg-indigo-400 rounded-full mix-blend-multiply filter blur-xl opacity-20 animate-blob animation-delay-4000"></div>
+          </div>
+        </div>
+
+        <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-24">
           <div className="text-center">
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6 }}
             >
-              <h1 className="text-5xl md:text-6xl font-bold text-gray-900 mb-6">
-                Discover Amazing
-                <br />
-                <span className="text-blue-600">Destinations</span>
+              {/* Badge */}
+              <motion.div
+                initial={{ opacity: 0, scale: 0.8 }}
+                animate={{ opacity: 1, scale: 1 }}
+                transition={{ delay: 0.2, duration: 0.5 }}
+                className="inline-flex items-center px-4 py-2 rounded-full bg-blue-100 text-blue-800 text-sm font-medium mb-8"
+              >
+                <Sparkles className="h-4 w-4 mr-2" />
+                Discover Jharkhand's Hidden Treasures
+              </motion.div>
+
+              <h1 className="text-6xl md:text-7xl font-bold text-gray-900 mb-8">
+                <span className="block">Journey Into</span>
+                <span className="block bg-gradient-to-r from-blue-600 via-emerald-600 to-indigo-600 bg-clip-text text-transparent">
+                  Incredible
+                </span>
+                <span className="block">Adventures</span>
               </h1>
               
-              <p className="text-xl text-gray-600 mb-12 max-w-3xl mx-auto">
-                Explore the hidden gems of Jharkhand. From pristine waterfalls to ancient temples,
-                find your perfect adventure.
+              <p className="text-xl text-gray-600 mb-12 max-w-3xl mx-auto leading-relaxed">
+                Embark on extraordinary journeys through Jharkhand's pristine landscapes. 
+                From cascading waterfalls to ancient tribal heritage, every destination tells a story.
               </p>
               
-              {/* Search Bar */}
-              <div className="max-w-2xl mx-auto mb-8">
+              {/* CTA Buttons */}
+              <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ delay: 0.4, duration: 0.5 }}
+                className="flex flex-col sm:flex-row gap-4 justify-center mb-16"
+              >
+                <Link
+                  to="/destinations"
+                  className="inline-flex items-center px-8 py-4 bg-gradient-to-r from-blue-600 to-indigo-600 text-white font-semibold rounded-full hover:from-blue-700 hover:to-indigo-700 transition-all duration-300 shadow-lg hover:shadow-xl transform hover:scale-105"
+                >
+                  <Globe className="h-5 w-5 mr-2" />
+                  Explore Destinations
+                  <ArrowRight className="h-5 w-5 ml-2" />
+                </Link>
+                <Link
+                  to="/register"
+                  className="inline-flex items-center px-8 py-4 bg-white text-gray-900 font-semibold rounded-full border-2 border-gray-200 hover:border-blue-300 transition-all duration-300 shadow-lg hover:shadow-xl"
+                >
+                  <Users className="h-5 w-5 mr-2" />
+                  Join Community
+                </Link>
+              </motion.div>
+
+              {/* Enhanced Search Bar */}
+              <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ delay: 0.6, duration: 0.5 }}
+                className="max-w-2xl mx-auto mb-12"
+              >
                 <div className="relative">
-                  <Search className="absolute left-4 top-1/2 transform -translate-y-1/2 text-gray-400 h-5 w-5" />
-                  <input
-                    type="text"
-                    placeholder="Search destinations..."
-                    className="w-full pl-12 pr-20 py-4 bg-white border border-gray-300 rounded-xl focus:ring-2 focus:ring-blue-500 focus:border-blue-500 text-gray-900 placeholder-gray-500"
-                    value={searchTerm}
-                    onChange={(e) => setSearchTerm(e.target.value)}
-                  />
-                  <button
-                    onClick={() => setShowFilters(!showFilters)}
-                    className={`absolute right-2 top-1/2 transform -translate-y-1/2 p-2 rounded-lg transition-colors ${
-                      showFilters ? 'bg-blue-100 text-blue-600' : 'text-gray-400 hover:text-gray-600'
-                    }`}
-                  >
-                    <Filter className="h-5 w-5" />
-                  </button>
+                  <div className="absolute inset-0 bg-gradient-to-r from-blue-500 to-emerald-500 rounded-2xl blur opacity-20"></div>
+                  <div className="relative bg-white/80 backdrop-blur-sm rounded-2xl p-2 shadow-2xl">
+                    <div className="relative">
+                      <Search className="absolute left-6 top-1/2 transform -translate-y-1/2 text-gray-400 h-6 w-6" />
+                      <input
+                        type="text"
+                        placeholder="Where do you want to explore today?"
+                        className="w-full pl-16 pr-24 py-5 bg-transparent border-0 focus:ring-0 text-gray-900 placeholder-gray-500 text-lg"
+                        value={searchTerm}
+                        onChange={(e) => setSearchTerm(e.target.value)}
+                      />
+                      <button
+                        onClick={() => setShowFilters(!showFilters)}
+                        className={`absolute right-3 top-1/2 transform -translate-y-1/2 p-3 rounded-xl transition-all duration-300 ${
+                          showFilters 
+                            ? 'bg-blue-500 text-white shadow-lg' 
+                            : 'bg-gray-100 text-gray-600 hover:bg-gray-200'
+                        }`}
+                      >
+                        <Filter className="h-5 w-5" />
+                      </button>
+                    </div>
+                  </div>
                 </div>
-              </div>
+              </motion.div>
               
-              {/* Stats */}
-              <div className="flex justify-center items-center space-x-12 text-gray-600">
+              {/* Enhanced Stats */}
+              <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ delay: 0.8, duration: 0.5 }}
+                className="grid grid-cols-3 gap-8 max-w-md mx-auto"
+              >
                 <div className="text-center">
-                  <div className="text-2xl font-bold text-gray-900">{destinations.length}+</div>
-                  <div className="text-sm">Destinations</div>
+                  <div className="text-3xl font-bold bg-gradient-to-r from-blue-600 to-indigo-600 bg-clip-text text-transparent">
+                    {destinations.length}+
+                  </div>
+                  <div className="text-sm text-gray-600 font-medium">Destinations</div>
                 </div>
                 <div className="text-center">
-                  <div className="text-2xl font-bold text-gray-900">50K+</div>
-                  <div className="text-sm">Travelers</div>
+                  <div className="text-3xl font-bold bg-gradient-to-r from-emerald-600 to-teal-600 bg-clip-text text-transparent">
+                    50K+
+                  </div>
+                  <div className="text-sm text-gray-600 font-medium">Travelers</div>
                 </div>
                 <div className="text-center">
-                  <div className="text-2xl font-bold text-gray-900">4.8</div>
-                  <div className="text-sm">Rating</div>
+                  <div className="text-3xl font-bold bg-gradient-to-r from-yellow-500 to-orange-500 bg-clip-text text-transparent">
+                    4.8
+                  </div>
+                  <div className="text-sm text-gray-600 font-medium">Rating</div>
                 </div>
-              </div>
+              </motion.div>
             </motion.div>
           </div>
         </div>

@@ -31,7 +31,7 @@ function App() {
           <Route path="/*" element={
             <div className="min-h-screen bg-gray-50">
               <Navbar />
-              <main>
+              <main className="pt-20">
                 <Routes>
                   <Route path="/" element={<Home />} />
                   <Route path="/destinations" element={<Destinations />} />
