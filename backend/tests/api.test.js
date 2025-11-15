@@ -1,5 +1,22 @@
 const request = require('supertest');
 const app = require('../server');
+const mongoose = require('mongoose');
+const User = require('../models/User');
+
+// Clean up database before all tests
+beforeAll(async () => {
+  // Wait for database connection
+  if (mongoose.connection.readyState !== 1) {
+    await new Promise((resolve) => {
+      mongoose.connection.once('connected', resolve);
+    });
+  }
+});
+
+// Clean up after all tests
+afterAll(async () => {
+  await mongoose.connection.close();
+});
 
 describe('API Health Check', () => {
   test('GET /api/health should return success', async () => {
@@ -35,17 +52,22 @@ describe('Auth Endpoints', () => {
   });
 
   test('POST /api/auth/register should reject duplicate email', async () => {
+    const uniqueEmail = `duplicate-${Date.now()}-${Math.random().toString(36).substring(7)}@test.com`;
     const userData = {
       name: 'Test User',
-      email: 'duplicate@test.com',
+      email: uniqueEmail,
       password: 'password123'
     };
 
     // First registration should succeed
-    await request(app)
+    const firstResponse = await request(app)
       .post('/api/auth/register')
-      .send(userData)
-      .expect(201);
+      .send(userData);
+
+    if (firstResponse.status !== 201) {
+      console.error('First registration failed:', firstResponse.body);
+    }
+    expect(firstResponse.status).toBe(201);
 
     // Second registration with same email should fail
     const response = await request(app)
@@ -148,7 +170,7 @@ describe('Destinations Endpoints', () => {
         url: 'https://example.com/test-image.jpg',
         alt: 'Test image'
       }],
-      tags: ['test', 'nature'],
+      tags: ['nature', 'adventure'],
       difficulty: 'easy'
     };
 
