@@ -27,20 +27,27 @@ const corsOptions = {
     // Allow requests with no origin (like mobile apps or curl requests)
     if (!origin) return callback(null, true);
 
-    // Check if origin is in the allowed list or is a localhost/127.0.0.1 URL
+    const frontendUrl = process.env.FRONTEND_URL || '';
+    // Normalize URLs by removing trailing slashes for comparison
+    const normalizeUrl = (url) => url ? url.replace(/\/$/, '') : '';
+    const normalizedOrigin = normalizeUrl(origin);
+    const normalizedFrontendUrl = normalizeUrl(frontendUrl);
+
     const allowedOrigins = [
       'http://localhost:3000',
       'http://localhost:5173',
       'http://localhost:8080',
-      process.env.FRONTEND_URL
+      normalizedFrontendUrl
     ];
 
     const isLocalhost = origin.startsWith('http://localhost:') || origin.startsWith('http://127.0.0.1:');
+    const isAllowed = allowedOrigins.includes(normalizedOrigin);
 
-    if (allowedOrigins.indexOf(origin) !== -1 || isLocalhost) {
+    if (isAllowed || isLocalhost) {
       callback(null, true);
     } else {
       console.log('CORS blocked origin:', origin);
+      console.log('Allowed origins:', allowedOrigins);
       callback(new Error('Not allowed by CORS'));
     }
   },
