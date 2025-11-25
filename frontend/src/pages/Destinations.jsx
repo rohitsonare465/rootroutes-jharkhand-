@@ -1,18 +1,19 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { Link } from 'react-router-dom';
+// eslint-disable-next-line no-unused-vars
 import { motion, useInView, AnimatePresence } from 'framer-motion';
-import { 
-  Search, 
-  Filter, 
-  MapPin, 
-  Star, 
-  Clock, 
-  Users, 
-  Camera, 
-  Mountain, 
-  TreePine, 
-  Waves, 
-  ArrowRight, 
+import {
+  Search,
+  Filter,
+  MapPin,
+  Star,
+  Clock,
+  Users,
+  Camera,
+  Mountain,
+  TreePine,
+  Waves,
+  ArrowRight,
   X
 } from 'lucide-react';
 import { destinationsAPI } from '../services/api';
@@ -37,11 +38,7 @@ const Destinations = () => {
     { name: 'family-friendly', icon: Users, color: 'bg-amber-500' },
   ];
 
-  useEffect(() => {
-    fetchDestinations();
-  }, [searchTerm, selectedTags]);
-
-  const fetchDestinations = async () => {
+  const fetchDestinations = React.useCallback(async () => {
     try {
       setLoading(true);
       const params = {
@@ -49,7 +46,7 @@ const Destinations = () => {
         ...(searchTerm && { search: searchTerm }),
         ...(selectedTags.length > 0 && { tags: selectedTags.join(',') })
       };
-      
+
       const response = await destinationsAPI.getAll(params);
       setDestinations(response.data.data.destinations || []);
     } catch (error) {
@@ -58,7 +55,11 @@ const Destinations = () => {
     } finally {
       setLoading(false);
     }
-  };
+  }, [searchTerm, selectedTags]);
+
+  useEffect(() => {
+    fetchDestinations();
+  }, [fetchDestinations]);
 
   const handleTagToggle = (tag) => {
     setSelectedTags(prev =>
@@ -81,7 +82,7 @@ const Destinations = () => {
   const DestinationCard = ({ destination, index }) => {
     const cardRef = useRef(null);
     const isInView = useInView(cardRef, { once: true, amount: 0.3 });
-    
+
     return (
       <motion.div
         ref={cardRef}
@@ -101,7 +102,7 @@ const Destinations = () => {
               }}
             />
             <div className="absolute inset-0 bg-gradient-to-t from-black/20 via-transparent to-transparent" />
-            
+
             {/* Rating Badge */}
             <div className="absolute top-3 right-3 bg-white/95 backdrop-blur-sm rounded-lg px-2 py-1 flex items-center space-x-1 shadow-sm">
               <Star className="h-3 w-3 text-yellow-500 fill-current" />
@@ -110,7 +111,7 @@ const Destinations = () => {
               </span>
             </div>
           </div>
-          
+
           <div className="p-5">
             <div className="mb-3">
               <h3 className="text-lg font-semibold text-gray-900 group-hover:text-blue-600 transition-colors duration-200 line-clamp-2 mb-2">
@@ -120,12 +121,12 @@ const Destinations = () => {
                 {destination.description}
               </p>
             </div>
-            
+
             <div className="flex items-center text-gray-500 text-sm mb-4">
               <MapPin className="h-4 w-4 mr-1 text-blue-500" />
               <span className="truncate">{destination.location}</span>
             </div>
-            
+
             {/* Tags */}
             {destination.tags?.length > 0 && (
               <div className="flex flex-wrap gap-1 mb-4">
@@ -147,7 +148,7 @@ const Destinations = () => {
                 )}
               </div>
             )}
-            
+
             {/* Footer */}
             <div className="flex items-center justify-between pt-2 border-t border-gray-100">
               <div className="flex items-center space-x-3 text-sm text-gray-500">
@@ -160,7 +161,7 @@ const Destinations = () => {
                   <span>{destination.rating?.count || 0}</span>
                 </div>
               </div>
-              
+
               <div className="flex items-center text-blue-600 text-sm font-medium group-hover:text-blue-700">
                 <span>View</span>
                 <ArrowRight className="h-3 w-3 ml-1 group-hover:translate-x-1 transition-transform" />
@@ -172,7 +173,7 @@ const Destinations = () => {
     );
   };
 
-  const LoadingCard = ({ index }) => (
+  const LoadingCard = () => (
     <div className="bg-white rounded-2xl shadow-sm border border-gray-100 overflow-hidden animate-pulse">
       <div className="aspect-[4/3] bg-gray-200" />
       <div className="p-5">
@@ -200,7 +201,7 @@ const Destinations = () => {
             <h1 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
               Destinations
             </h1>
-            
+
             {/* Search Bar */}
             <div className="max-w-2xl mx-auto">
               <div className="relative">
@@ -214,9 +215,8 @@ const Destinations = () => {
                 />
                 <button
                   onClick={() => setShowFilters(!showFilters)}
-                  className={`absolute right-2 top-1/2 transform -translate-y-1/2 p-2 rounded-lg transition-colors ${
-                    showFilters ? 'bg-blue-100 text-blue-600' : 'text-gray-400 hover:text-gray-600'
-                  }`}
+                  className={`absolute right-2 top-1/2 transform -translate-y-1/2 p-2 rounded-lg transition-colors ${showFilters ? 'bg-blue-100 text-blue-600' : 'text-gray-400 hover:text-gray-600'
+                    }`}
                 >
                   <Filter className="h-5 w-5" />
                 </button>
@@ -225,7 +225,7 @@ const Destinations = () => {
           </div>
         </div>
       </section>
-      
+
       {/* Filter Tags Section */}
       <AnimatePresence>
         {showFilters && (
@@ -247,18 +247,18 @@ const Destinations = () => {
                 </button>
               </div>
               <div className="grid grid-cols-2 md:grid-cols-5 gap-3">
-                {availableTags.map(({ name, icon: Icon, color }) => (
+                {/* eslint-disable-next-line no-unused-vars */}
+                {availableTags.map(({ name, icon: TagIcon, color }) => (
                   <button
                     key={name}
                     onClick={() => handleTagToggle(name)}
-                    className={`flex items-center space-x-3 p-3 rounded-xl border transition-all duration-200 ${
-                      selectedTags.includes(name)
-                        ? 'border-blue-500 bg-blue-50 text-blue-700'
-                        : 'border-gray-200 bg-white hover:border-gray-300 text-gray-600'
-                    }`}
+                    className={`flex items-center space-x-3 p-3 rounded-xl border transition-all duration-200 ${selectedTags.includes(name)
+                      ? 'border-blue-500 bg-blue-50 text-blue-700'
+                      : 'border-gray-200 bg-white hover:border-gray-300 text-gray-600'
+                      }`}
                   >
                     <div className={`p-2 rounded-lg ${color} text-white`}>
-                      <Icon className="h-4 w-4" />
+                      <TagIcon className="h-4 w-4" />
                     </div>
                     <span className="text-sm font-medium">{name.replace('-', ' ')}</span>
                   </button>
@@ -285,7 +285,7 @@ const Destinations = () => {
                       className={`inline-flex items-center space-x-2 px-3 py-1 rounded-lg text-sm font-medium text-white ${tagInfo?.color || 'bg-gray-500'}`}
                     >
                       <span>{tag.replace('-', ' ')}</span>
-                      <button 
+                      <button
                         onClick={() => handleTagToggle(tag)}
                         className="hover:bg-white/20 rounded-full p-0.5"
                       >
@@ -341,9 +341,9 @@ const Destinations = () => {
           ) : (
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
               {destinations.map((destination, index) => (
-                <DestinationCard 
-                  key={destination._id} 
-                  destination={destination} 
+                <DestinationCard
+                  key={destination._id}
+                  destination={destination}
                   index={index}
                 />
               ))}

@@ -3,6 +3,7 @@ import { authAPI } from '../services/api';
 
 const AuthContext = createContext();
 
+// eslint-disable-next-line react-refresh/only-export-components
 export const useAuth = () => {
   const context = useContext(AuthContext);
   if (!context) {
@@ -17,6 +18,16 @@ export const AuthProvider = ({ children }) => {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
+    const verifyToken = async () => {
+      try {
+        const response = await authAPI.getProfile();
+        setUser(response.data.data);
+      } catch (error) {
+        console.error('Token verification failed:', error);
+        logout();
+      }
+    };
+
     // Check if user is logged in on app start
     const token = localStorage.getItem('token');
     const savedUser = localStorage.getItem('user');
@@ -35,27 +46,17 @@ export const AuthProvider = ({ children }) => {
     setLoading(false);
   }, []);
 
-  const verifyToken = async () => {
-    try {
-      const response = await authAPI.getProfile();
-      setUser(response.data.data);
-    } catch (error) {
-      console.error('Token verification failed:', error);
-      logout();
-    }
-  };
-
   const login = async (credentials) => {
     try {
       const response = await authAPI.login(credentials);
       const { data } = response.data;
-      
+
       localStorage.setItem('token', data.token);
       localStorage.setItem('user', JSON.stringify(data));
-      
+
       setUser(data);
       setIsAuthenticated(true);
-      
+
       return { success: true, data };
     } catch (error) {
       const message = error.response?.data?.message || 'Login failed';
@@ -69,13 +70,13 @@ export const AuthProvider = ({ children }) => {
       const response = await authAPI.register(userData);
       console.log('Registration response:', response);
       const { data } = response.data;
-      
+
       localStorage.setItem('token', data.token);
       localStorage.setItem('user', JSON.stringify(data));
-      
+
       setUser(data);
       setIsAuthenticated(true);
-      
+
       return { success: true, data };
     } catch (error) {
       console.error('Registration error:', error);

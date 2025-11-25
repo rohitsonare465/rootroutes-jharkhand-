@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
-import { motion } from 'framer-motion';
 import { User, Mail, Lock, Eye, EyeOff, ArrowRight, Mountain, Sparkles, CheckCircle } from 'lucide-react';
 import { useAuth } from '../context/AuthContext';
 
@@ -50,6 +49,7 @@ const Register = () => {
       return;
     }
 
+    // eslint-disable-next-line no-unused-vars
     const { confirmPassword, ...userData } = formData;
     const result = await register(userData);
 
@@ -241,10 +241,10 @@ const Register = () => {
                     autoComplete="new-password"
                     required
                     className={`w-full pl-12 pr-12 py-3 border rounded-xl focus:ring-2 focus:ring-emerald-500 transition-all duration-200 text-gray-900 placeholder-gray-500 ${formData.confirmPassword
-                        ? passwordsMatch
-                          ? 'border-green-300 focus:border-green-500'
-                          : 'border-red-300 focus:border-red-500'
-                        : 'border-gray-300 focus:border-emerald-500'
+                      ? passwordsMatch
+                        ? 'border-green-300 focus:border-green-500'
+                        : 'border-red-300 focus:border-red-500'
+                      : 'border-gray-300 focus:border-emerald-500'
                       }`}
                     placeholder="Confirm your password"
                     value={formData.confirmPassword}

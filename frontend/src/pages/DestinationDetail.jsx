@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { useParams, Link, useNavigate } from 'react-router-dom';
+import { useParams, Link } from 'react-router-dom';
 import { destinationsAPI } from '../services/api';
 import { useAuth } from '../context/AuthContext';
 
@@ -8,25 +8,24 @@ const DestinationDetail = () => {
   const [destination, setDestination] = useState(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState('');
-  const { isAuthenticated, user } = useAuth();
-  const navigate = useNavigate();
+  const { isAuthenticated } = useAuth();
 
   useEffect(() => {
+    const fetchDestination = async () => {
+      try {
+        setLoading(true);
+        const response = await destinationsAPI.getById(id);
+        setDestination(response.data.data);
+      } catch (error) {
+        console.error('Error fetching destination:', error);
+        setError('Destination not found or error loading details');
+      } finally {
+        setLoading(false);
+      }
+    };
+
     fetchDestination();
   }, [id]);
-
-  const fetchDestination = async () => {
-    try {
-      setLoading(true);
-      const response = await destinationsAPI.getById(id);
-      setDestination(response.data.data);
-    } catch (error) {
-      console.error('Error fetching destination:', error);
-      setError('Destination not found or error loading details');
-    } finally {
-      setLoading(false);
-    }
-  };
 
   const getDefaultImage = () => 'https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=800&h=600&fit=crop';
 
@@ -42,8 +41,8 @@ const DestinationDetail = () => {
     return (
       <div className="min-h-screen flex flex-col items-center justify-center">
         <div className="text-lg text-red-600 mb-4">{error}</div>
-        <Link 
-          to="/" 
+        <Link
+          to="/"
           className="text-green-600 hover:text-green-800 font-medium"
         >
           ← Back to Home
@@ -85,7 +84,7 @@ const DestinationDetail = () => {
               <h1 className="text-3xl font-bold text-gray-900 mb-4">
                 {destination.title}
               </h1>
-              
+
               <div className="flex items-center space-x-4 mb-4">
                 <div className="flex items-center">
                   <span className="text-gray-500 mr-1">📍</span>
@@ -94,7 +93,7 @@ const DestinationDetail = () => {
                 <div className="flex items-center">
                   <span className="text-yellow-500 mr-1">★</span>
                   <span className="text-gray-700">
-                    {destination.rating?.average?.toFixed(1) || 'New'} 
+                    {destination.rating?.average?.toFixed(1) || 'New'}
                     {destination.rating?.count > 0 && ` (${destination.rating.count} reviews)`}
                   </span>
                 </div>
@@ -152,23 +151,23 @@ const DestinationDetail = () => {
           <div className="lg:col-span-1">
             <div className="bg-white rounded-lg shadow-lg p-6 sticky top-8">
               <h3 className="text-lg font-semibold text-gray-900 mb-4">Quick Info</h3>
-              
+
               <div className="space-y-3">
                 <div>
                   <span className="font-medium text-gray-700">Best Time:</span>
                   <span className="ml-2 text-gray-600">{destination.bestTime}</span>
                 </div>
-                
+
                 <div>
                   <span className="font-medium text-gray-700">Duration:</span>
                   <span className="ml-2 text-gray-600">{destination.duration}</span>
                 </div>
-                
+
                 <div>
                   <span className="font-medium text-gray-700">Entry Fee:</span>
                   <span className="ml-2 text-gray-600">{destination.entryFee}</span>
                 </div>
-                
+
                 {destination.facilities?.length > 0 && (
                   <div>
                     <span className="font-medium text-gray-700 block mb-2">Facilities:</span>
@@ -210,7 +209,7 @@ const DestinationDetail = () => {
                     Login to Add Review
                   </Link>
                 )}
-                
+
                 <button
                   onClick={() => window.history.back()}
                   className="w-full bg-gray-200 text-gray-700 py-2 px-4 rounded-lg hover:bg-gray-300 transition-colors"

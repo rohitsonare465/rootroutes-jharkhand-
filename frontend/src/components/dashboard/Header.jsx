@@ -1,7 +1,7 @@
 import React from 'react';
 import { Menu, Bell, Search, User } from 'lucide-react';
 
-const Header = ({ sidebarOpen, setSidebarOpen }) => {
+const Header = ({ setSidebarOpen }) => {
   return (
     <header className="sticky top-0 z-30 transition-all duration-300 border-b border-white/20 bg-white/70 backdrop-blur-xl shadow-sm">
       <div className="px-6 py-3">

@@ -10,28 +10,28 @@ const Profile = () => {
   const navigate = useNavigate();
 
   useEffect(() => {
+    const fetchUserDestinations = async () => {
+      try {
+        setLoading(true);
+        // This would need to be implemented in the backend to filter by user
+        // For now, we'll just show all destinations
+        const response = await destinationsAPI.getAll({ limit: 50 });
+        // Filter destinations created by current user
+        const userDests = response.data.data.destinations.filter(
+          dest => dest.createdBy?._id === user._id || dest.createdBy?.name === user.name
+        );
+        setUserDestinations(userDests);
+      } catch (error) {
+        console.error('Error fetching user destinations:', error);
+      } finally {
+        setLoading(false);
+      }
+    };
+
     if (user) {
       fetchUserDestinations();
     }
   }, [user]);
-
-  const fetchUserDestinations = async () => {
-    try {
-      setLoading(true);
-      // This would need to be implemented in the backend to filter by user
-      // For now, we'll just show all destinations
-      const response = await destinationsAPI.getAll({ limit: 50 });
-      // Filter destinations created by current user
-      const userDests = response.data.data.destinations.filter(
-        dest => dest.createdBy?._id === user._id || dest.createdBy?.name === user.name
-      );
-      setUserDestinations(userDests);
-    } catch (error) {
-      console.error('Error fetching user destinations:', error);
-    } finally {
-      setLoading(false);
-    }
-  };
 
   const handleLogout = () => {
     logout();
@@ -66,11 +66,10 @@ const Profile = () => {
                 Member since {new Date(user.createdAt || Date.now()).toLocaleDateString()}
               </p>
               <div className="mt-2">
-                <span className={`px-2 py-1 text-xs font-semibold rounded-full ${
-                  user.role === 'admin' 
-                    ? 'bg-purple-100 text-purple-800' 
+                <span className={`px-2 py-1 text-xs font-semibold rounded-full ${user.role === 'admin'
+                    ? 'bg-purple-100 text-purple-800'
                     : 'bg-green-100 text-green-800'
-                }`}>
+                  }`}>
                   {user.role === 'admin' ? 'Admin' : 'Explorer'}
                 </span>
               </div>
@@ -153,13 +152,12 @@ const Profile = () => {
                           {destination.rating?.average?.toFixed(1) || 'New'}
                         </span>
                       </div>
-                      <span className={`px-2 py-1 text-xs rounded-full ${
-                        destination.status === 'active'
+                      <span className={`px-2 py-1 text-xs rounded-full ${destination.status === 'active'
                           ? 'bg-green-100 text-green-800'
                           : destination.status === 'pending'
-                          ? 'bg-yellow-100 text-yellow-800'
-                          : 'bg-red-100 text-red-800'
-                      }`}>
+                            ? 'bg-yellow-100 text-yellow-800'
+                            : 'bg-red-100 text-red-800'
+                        }`}>
                         {destination.status}
                       </span>
                     </div>

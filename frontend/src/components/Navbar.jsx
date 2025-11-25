@@ -1,14 +1,15 @@
 import React, { useState, useEffect } from 'react';
 import { Link, useNavigate, useLocation } from 'react-router-dom';
-import { motion, AnimatePresence } from 'framer-motion';
-import { 
-  Menu, 
-  X, 
-  MapPin, 
-  User, 
-  LogOut, 
-  Compass, 
-  Mountain, 
+// eslint-disable-next-line no-unused-vars
+import { motion } from 'framer-motion';
+import {
+  Menu,
+  X,
+  MapPin,
+  User,
+  LogOut,
+  Compass,
+  Mountain,
   Home,
   Settings,
   Bell,
@@ -30,7 +31,7 @@ const Navbar = () => {
     const handleScroll = () => {
       setIsScrolled(window.scrollY > 20);
     };
-    
+
     window.addEventListener('scroll', handleScroll);
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
@@ -47,27 +48,26 @@ const Navbar = () => {
   ];
 
   // Add dashboard link for authenticated users
-  const authNavItems = isAuthenticated 
-    ? [...navItems, { path: '/dashboard', label: 'Dashboard', icon: Settings }] 
+  const authNavItems = isAuthenticated
+    ? [...navItems, { path: '/dashboard', label: 'Dashboard', icon: Settings }]
     : navItems;
 
   return (
-    <motion.nav 
+    <motion.nav
       initial={{ y: -100 }}
       animate={{ y: 0 }}
-      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-700 ${
-        isScrolled 
-          ? 'bg-white/95 backdrop-blur-xl shadow-xl border-b border-gray-200/20' 
-          : 'bg-white/90 backdrop-blur-lg shadow-lg'
-      }`}
+      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-700 ${isScrolled
+        ? 'bg-white/95 backdrop-blur-xl shadow-xl border-b border-gray-200/20'
+        : 'bg-white/90 backdrop-blur-lg shadow-lg'
+        }`}
     >
       {/* Premium Background Gradient */}
       <div className="absolute inset-0 bg-gradient-to-r from-blue-600/5 via-indigo-600/5 to-emerald-600/5" />
-      
+
       <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between items-center h-20">
           {/* Enhanced Logo */}
-          <motion.div 
+          <motion.div
             whileHover={{ scale: 1.02 }}
             className="flex items-center space-x-4"
           >
@@ -95,16 +95,15 @@ const Navbar = () => {
             {authNavItems.map((item) => {
               const Icon = item.icon;
               const isActive = location.pathname === item.path;
-              
+
               return (
                 <Link
                   key={item.path}
                   to={item.path}
-                  className={`relative flex items-center space-x-2 px-6 py-3 rounded-2xl font-semibold transition-all duration-300 group ${
-                    isActive 
-                      ? 'text-white bg-gradient-to-r from-blue-600 to-indigo-600 shadow-lg shadow-blue-500/25' 
-                      : 'text-gray-700 hover:text-blue-600 hover:bg-blue-50/80'
-                  }`}
+                  className={`relative flex items-center space-x-2 px-6 py-3 rounded-2xl font-semibold transition-all duration-300 group ${isActive
+                    ? 'text-white bg-gradient-to-r from-blue-600 to-indigo-600 shadow-lg shadow-blue-500/25'
+                    : 'text-gray-700 hover:text-blue-600 hover:bg-blue-50/80'
+                    }`}
                 >
                   <Icon className={`h-4 w-4 ${isActive ? 'text-white' : 'text-gray-500 group-hover:text-blue-600'}`} />
                   <span className="text-sm">{item.label}</span>
@@ -160,15 +159,15 @@ const Navbar = () => {
                   {/* Dropdown Menu */}
                   <div className="absolute right-0 top-full mt-2 w-56 bg-white rounded-2xl shadow-xl border border-gray-200/50 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300 transform translate-y-2 group-hover:translate-y-0">
                     <div className="p-2">
-                      <Link 
-                        to="/profile" 
+                      <Link
+                        to="/profile"
                         className="flex items-center space-x-3 px-4 py-3 rounded-xl text-gray-700 hover:text-blue-600 hover:bg-blue-50/80 transition-all duration-200"
                       >
                         <User className="h-4 w-4" />
                         <span className="font-medium">Profile</span>
                       </Link>
-                      <Link 
-                        to="/dashboard" 
+                      <Link
+                        to="/dashboard"
                         className="flex items-center space-x-3 px-4 py-3 rounded-xl text-gray-700 hover:text-blue-600 hover:bg-blue-50/80 transition-all duration-200"
                       >
                         <Settings className="h-4 w-4" />
@@ -188,14 +187,14 @@ const Navbar = () => {
               </div>
             ) : (
               <div className="flex items-center space-x-3">
-                <Link 
-                  to="/login" 
+                <Link
+                  to="/login"
                   className="px-6 py-3 rounded-2xl text-gray-700 font-semibold hover:text-blue-600 hover:bg-blue-50/80 transition-all duration-300"
                 >
                   Sign In
                 </Link>
-                <Link 
-                  to="/register" 
+                <Link
+                  to="/register"
                   className="px-6 py-3 rounded-2xl bg-gradient-to-r from-blue-600 to-indigo-600 text-white font-semibold hover:from-blue-700 hover:to-indigo-700 shadow-lg hover:shadow-xl transform hover:-translate-y-0.5 transition-all duration-300"
                 >
                   Get Started
@@ -231,17 +230,16 @@ const Navbar = () => {
                 {authNavItems.map((item) => {
                   const Icon = item.icon;
                   const isActive = location.pathname === item.path;
-                  
+
                   return (
                     <Link
                       key={item.path}
                       to={item.path}
                       onClick={() => setIsMobileMenuOpen(false)}
-                      className={`flex items-center space-x-4 px-4 py-4 rounded-2xl font-semibold transition-all duration-300 ${
-                        isActive 
-                          ? 'text-white bg-gradient-to-r from-blue-600 to-indigo-600 shadow-lg' 
-                          : 'text-gray-700 hover:text-blue-600 hover:bg-blue-50/80'
-                      }`}
+                      className={`flex items-center space-x-4 px-4 py-4 rounded-2xl font-semibold transition-all duration-300 ${isActive
+                        ? 'text-white bg-gradient-to-r from-blue-600 to-indigo-600 shadow-lg'
+                        : 'text-gray-700 hover:text-blue-600 hover:bg-blue-50/80'
+                        }`}
                     >
                       <Icon className="h-5 w-5" />
                       <span>{item.label}</span>
@@ -265,8 +263,8 @@ const Navbar = () => {
                         <p className="text-sm text-gray-600">Explorer</p>
                       </div>
                     </div>
-                    
-                    <Link 
+
+                    <Link
                       to="/profile"
                       onClick={() => setIsMobileMenuOpen(false)}
                       className="flex items-center space-x-4 px-4 py-4 rounded-2xl text-gray-700 hover:text-blue-600 hover:bg-blue-50/80 transition-all duration-300"
@@ -274,7 +272,7 @@ const Navbar = () => {
                       <User className="h-5 w-5" />
                       <span className="font-medium">Profile</span>
                     </Link>
-                    
+
                     <button
                       onClick={handleLogout}
                       className="flex items-center space-x-4 w-full px-4 py-4 rounded-2xl text-red-600 hover:bg-red-50/80 transition-all duration-300"
@@ -285,14 +283,14 @@ const Navbar = () => {
                   </div>
                 ) : (
                   <div className="space-y-3">
-                    <Link 
+                    <Link
                       to="/login"
                       onClick={() => setIsMobileMenuOpen(false)}
                       className="block w-full px-4 py-4 rounded-2xl text-center text-gray-700 font-semibold hover:text-blue-600 hover:bg-blue-50/80 transition-all duration-300"
                     >
                       Sign In
                     </Link>
-                    <Link 
+                    <Link
                       to="/register"
                       onClick={() => setIsMobileMenuOpen(false)}
                       className="block w-full px-4 py-4 rounded-2xl text-center bg-gradient-to-r from-blue-600 to-indigo-600 text-white font-semibold hover:from-blue-700 hover:to-indigo-700 shadow-lg transition-all duration-300"

@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
 import { Link, useNavigate, useLocation } from 'react-router-dom';
-import { motion } from 'framer-motion';
 import { Mail, Lock, Eye, EyeOff, ArrowRight, Mountain, Sparkles } from 'lucide-react';
 import { useAuth } from '../context/AuthContext';
 
@@ -12,11 +11,11 @@ const Login = () => {
   const [error, setError] = useState('');
   const [loading, setLoading] = useState(false);
   const [showPassword, setShowPassword] = useState(false);
-  
+
   const { login, isAuthenticated } = useAuth();
   const navigate = useNavigate();
   const location = useLocation();
-  
+
   const from = location.state?.from?.pathname || '/dashboard';
 
   // Redirect if already authenticated
@@ -39,13 +38,13 @@ const Login = () => {
     setError('');
 
     const result = await login(formData);
-    
+
     if (result.success) {
       navigate(from, { replace: true });
     } else {
       setError(result.message);
     }
-    
+
     setLoading(false);
   };
 
@@ -59,7 +58,7 @@ const Login = () => {
           <div className="absolute top-40 right-20 w-72 h-72 bg-emerald-400 rounded-full mix-blend-multiply filter blur-xl opacity-30 animate-blob animation-delay-2000"></div>
           <div className="absolute bottom-20 left-40 w-72 h-72 bg-indigo-400 rounded-full mix-blend-multiply filter blur-xl opacity-30 animate-blob animation-delay-4000"></div>
         </div>
-        
+
         <div className="relative z-10 flex flex-col justify-center items-center text-white p-12">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
@@ -109,7 +108,7 @@ const Login = () => {
               <Sparkles className="h-4 w-4 mr-2" />
               Welcome Back Explorer
             </motion.div>
-            
+
             <h2 className="text-3xl font-bold text-gray-900 mb-2">
               Sign in to your account
             </h2>
@@ -123,7 +122,7 @@ const Login = () => {
               </Link>
             </p>
           </div>
-          
+
           {/* Form */}
           <motion.form
             initial={{ opacity: 0, y: 20 }}
@@ -141,7 +140,7 @@ const Login = () => {
                 {error}
               </motion.div>
             )}
-            
+
             <div className="space-y-4">
               {/* Email Field */}
               <div>
@@ -163,7 +162,7 @@ const Login = () => {
                   />
                 </div>
               </div>
-              
+
               {/* Password Field */}
               <div>
                 <label htmlFor="password" className="block text-sm font-medium text-gray-700 mb-2">
