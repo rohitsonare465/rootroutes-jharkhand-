@@ -31,7 +31,7 @@ services:
     environment:
       NODE_ENV: production
       PORT: 5001
-      MONGODB_URI: mongodb://admin:admin123@mongodb:27017/rootroutes_jharkhand?authSource=admin
+      MONGODB_URI: mongodb+srv://rootroutes_db_user:qzAldjhO8E7c1rNF@rootroutes.0zpsl5i.mongodb.net/rootroutes_jharkhand?appName=rootroutes
       JWT_SECRET: ${JWT_SECRET:-rootroutes-production-secret-change-this}
       JWT_EXPIRE: 7d
       FRONTEND_URL: http://localhost:3000
