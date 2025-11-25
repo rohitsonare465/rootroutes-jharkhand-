@@ -26,7 +26,7 @@ const corsOptions = {
   origin: function (origin, callback) {
     // Allow requests with no origin (like mobile apps or curl requests)
     if (!origin) return callback(null, true);
-    
+
     // Check if origin is in the allowed list or is a localhost/127.0.0.1 URL
     const allowedOrigins = [
       'http://localhost:3000',
@@ -34,9 +34,9 @@ const corsOptions = {
       'http://localhost:8080',
       process.env.FRONTEND_URL
     ];
-    
+
     const isLocalhost = origin.startsWith('http://localhost:') || origin.startsWith('http://127.0.0.1:');
-    
+
     if (allowedOrigins.indexOf(origin) !== -1 || isLocalhost) {
       callback(null, true);
     } else {
@@ -62,9 +62,10 @@ app.use(cors(corsOptions));
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
-// Routes
+// Mount routers
 app.use('/api/auth', authRoutes);
 app.use('/api/destinations', destinationRoutes);
+app.use('/api/trips', require('./routes/tripRoutes'));
 
 // Health check endpoint
 app.get('/api/health', (req, res) => {

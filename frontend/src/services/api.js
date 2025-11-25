@@ -59,6 +59,15 @@ export const destinationsAPI = {
   delete: (id) => api.delete(`/destinations/${id}`),
 };
 
+// Trips API calls
+export const tripsAPI = {
+  getAll: () => api.get('/trips'),
+  getById: (id) => api.get(`/trips/${id}`),
+  create: (data) => api.post('/trips', data),
+  update: (id, data) => api.put(`/trips/${id}`, data),
+  delete: (id) => api.delete(`/trips/${id}`),
+};
+
 // Health check
 export const healthAPI = {
   check: () => api.get('/health'),

@@ -14,6 +14,7 @@ import DestinationDetail from './pages/DestinationDetail';
 import DashboardHome from './pages/dashboard/DashboardHome';
 import DestinationsManagement from './pages/dashboard/DestinationsManagement';
 import TripPlanner from './pages/dashboard/TripPlanner';
+import CreateTrip from './pages/dashboard/CreateTrip';
 import CultureHeritage from './pages/dashboard/CultureHeritage';
 import HotelsBooking from './pages/dashboard/HotelsBooking';
 import TravelGuide from './pages/dashboard/TravelGuide';
@@ -38,19 +39,19 @@ function App() {
                   <Route path="/destinations/:id" element={<DestinationDetail />} />
                   <Route path="/login" element={<Login />} />
                   <Route path="/register" element={<Register />} />
-                  <Route 
-                    path="/profile" 
+                  <Route
+                    path="/profile"
                     element={
                       <ProtectedRoute>
                         <Profile />
                       </ProtectedRoute>
-                    } 
+                    }
                   />
                 </Routes>
               </main>
             </div>
           } />
-          
+
           {/* User Dashboard Routes - Available to all authenticated users */}
           <Route path="/dashboard/*" element={
             <ProtectedRoute>
@@ -58,6 +59,7 @@ function App() {
                 <Routes>
                   <Route index element={<DashboardHome />} />
                   <Route path="trip-planner" element={<TripPlanner />} />
+                  <Route path="trip-planner/new" element={<CreateTrip />} />
                   <Route path="destinations" element={<Destinations />} />
                   <Route path="destinations/:id" element={<DestinationDetail />} />
                   <Route path="culture" element={<CultureHeritage />} />

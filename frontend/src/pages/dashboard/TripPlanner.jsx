@@ -1,10 +1,10 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { 
-  Calendar, 
-  MapPin, 
-  Clock, 
-  Users, 
+import {
+  Calendar,
+  MapPin,
+  Clock,
+  Users,
   Plus,
   Search,
   Filter,
@@ -13,42 +13,26 @@ import {
   Eye
 } from 'lucide-react';
 
+import { tripsAPI } from '../../services/api';
+
 const TripPlanner = () => {
-  const trips = [
-    {
-      id: 1,
-      title: 'Netarhat Hill Station Adventure',
-      destinations: ['Netarhat', 'Betla National Park', 'Hundru Falls'],
-      duration: '5 days',
-      participants: 4,
-      status: 'active',
-      startDate: '2024-12-15',
-      budget: '₹25,000',
-      image: 'https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=400&h=300&fit=crop',
-    },
-    {
-      id: 2,
-      title: 'Spiritual Journey - Deoghar',
-      destinations: ['Baidyanath Temple', 'Tapovan', 'Basukinath'],
-      duration: '3 days',
-      participants: 2,
-      status: 'planning',
-      startDate: '2024-12-20',
-      budget: '₹15,000',
-      image: 'https://images.unsplash.com/photo-1564507592333-c60657eea523?w=400&h=300&fit=crop',
-    },
-    {
-      id: 3,
-      title: 'Ranchi City Explorer',
-      destinations: ['Rock Garden', 'Tagore Hill', 'Kanke Dam'],
-      duration: '2 days',
-      participants: 6,
-      status: 'completed',
-      startDate: '2024-11-28',
-      budget: '₹12,000',
-      image: 'https://images.unsplash.com/photo-1570295999919-56ceb5ecca61?w=400&h=300&fit=crop',
-    },
-  ];
+  const [trips, setTrips] = React.useState([]);
+  const [loading, setLoading] = React.useState(true);
+
+  React.useEffect(() => {
+    fetchTrips();
+  }, []);
+
+  const fetchTrips = async () => {
+    try {
+      const response = await tripsAPI.getAll();
+      setTrips(response.data.data || []);
+    } catch (error) {
+      console.error('Error fetching trips:', error);
+    } finally {
+      setLoading(false);
+    }
+  };
 
   const getStatusColor = (status) => {
     switch (status) {
@@ -157,66 +141,72 @@ const TripPlanner = () => {
       </div>
 
       {/* Trips Grid */}
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-        {trips.map((trip) => (
-          <div key={trip.id} className="bg-white rounded-lg shadow-sm overflow-hidden hover:shadow-md transition-shadow">
-            <div className="relative">
-              <img
-                src={trip.image}
-                alt={trip.title}
-                className="w-full h-48 object-cover"
-              />
-              <div className="absolute top-4 right-4">
-                <span className={`px-2 py-1 text-xs font-medium rounded-full ${getStatusColor(trip.status)}`}>
-                  {trip.status.charAt(0).toUpperCase() + trip.status.slice(1)}
-                </span>
-              </div>
-            </div>
-            
-            <div className="p-6">
-              <h3 className="text-lg font-semibold text-gray-900 mb-2">{trip.title}</h3>
-              
-              <div className="space-y-2 mb-4">
-                <div className="flex items-center text-sm text-gray-600">
-                  <MapPin className="w-4 h-4 mr-2" />
-                  <span>{trip.destinations.join(', ')}</span>
-                </div>
-                <div className="flex items-center text-sm text-gray-600">
-                  <Clock className="w-4 h-4 mr-2" />
-                  <span>{trip.duration}</span>
-                </div>
-                <div className="flex items-center text-sm text-gray-600">
-                  <Users className="w-4 h-4 mr-2" />
-                  <span>{trip.participants} participants</span>
-                </div>
-                <div className="flex items-center text-sm text-gray-600">
-                  <Calendar className="w-4 h-4 mr-2" />
-                  <span>{new Date(trip.startDate).toLocaleDateString()}</span>
+      {loading ? (
+        <div className="flex justify-center py-12">
+          <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-primary-600"></div>
+        </div>
+      ) : (
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+          {trips.map((trip) => (
+            <div key={trip._id} className="bg-white rounded-lg shadow-sm overflow-hidden hover:shadow-md transition-shadow">
+              <div className="relative">
+                <img
+                  src={trip.destinations[0]?.images?.[0] || 'https://images.unsplash.com/photo-1469854523086-cc02fe5d8800?w=400&h=300&fit=crop'}
+                  alt={trip.title}
+                  className="w-full h-48 object-cover"
+                />
+                <div className="absolute top-4 right-4">
+                  <span className={`px-2 py-1 text-xs font-medium rounded-full ${getStatusColor(trip.status)}`}>
+                    {trip.status.charAt(0).toUpperCase() + trip.status.slice(1)}
+                  </span>
                 </div>
               </div>
 
-              <div className="flex items-center justify-between">
-                <div>
-                  <span className="text-lg font-semibold text-gray-900">{trip.budget}</span>
-                  <span className="text-sm text-gray-500 ml-1">total</span>
+              <div className="p-6">
+                <h3 className="text-lg font-semibold text-gray-900 mb-2">{trip.title}</h3>
+
+                <div className="space-y-2 mb-4">
+                  <div className="flex items-center text-sm text-gray-600">
+                    <MapPin className="w-4 h-4 mr-2" />
+                    <span className="truncate">{trip.destinations.map(d => d.title).join(', ')}</span>
+                  </div>
+                  <div className="flex items-center text-sm text-gray-600">
+                    <Clock className="w-4 h-4 mr-2" />
+                    <span>{Math.ceil((new Date(trip.endDate) - new Date(trip.startDate)) / (1000.0 * 60 * 60 * 24))} days</span>
+                  </div>
+                  <div className="flex items-center text-sm text-gray-600">
+                    <Users className="w-4 h-4 mr-2" />
+                    <span>{trip.travelers} participants</span>
+                  </div>
+                  <div className="flex items-center text-sm text-gray-600">
+                    <Calendar className="w-4 h-4 mr-2" />
+                    <span>{new Date(trip.startDate).toLocaleDateString()}</span>
+                  </div>
                 </div>
-                
-                <div className="flex items-center space-x-2">
-                  <button className="p-2 text-gray-400 hover:text-blue-600 transition-colors">
-                    <Eye className="w-4 h-4" />
-                  </button>
-                  <button className="p-2 text-gray-400 hover:text-green-600 transition-colors">
-                    <Edit className="w-4 h-4" />
-                  </button>
-                  <button className="p-2 text-gray-400 hover:text-red-600 transition-colors">
-                    <Trash2 className="w-4 h-4" />
-                  </button>
+
+                <div className="flex items-center justify-between">
+                  <div>
+                    <span className="text-lg font-semibold text-gray-900">₹{trip.budget.toLocaleString()}</span>
+                    <span className="text-sm text-gray-500 ml-1">total</span>
+                  </div>
+
+                  <div className="flex items-center space-x-2">
+                    <button className="p-2 text-gray-400 hover:text-blue-600 transition-colors">
+                      <Eye className="w-4 h-4" />
+                    </button>
+                    <button className="p-2 text-gray-400 hover:text-green-600 transition-colors">
+                      <Edit className="w-4 h-4" />
+                    </button>
+                    <button className="p-2 text-gray-400 hover:text-red-600 transition-colors">
+                      <Trash2 className="w-4 h-4" />
+                    </button>
+                  </div>
                 </div>
               </div>
             </div>
-          </div>
-        ))}
-      </div>
+          ))}
+        </div>
+      )}
 
       {/* Empty State for New Users */}
       {trips.length === 0 && (
