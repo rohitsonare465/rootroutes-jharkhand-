@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
-import { motion } from 'framer-motion';
 import {
   Plus,
   Search,
@@ -24,11 +23,7 @@ const DestinationsManagement = () => {
   const [selectedDestination, setSelectedDestination] = useState(null);
   const [showDeleteModal, setShowDeleteModal] = useState(false);
 
-  useEffect(() => {
-    fetchDestinations();
-  }, [currentPage, searchTerm]);
-
-  const fetchDestinations = async () => {
+  const fetchDestinations = React.useCallback(async () => {
     try {
       setLoading(true);
       const params = {
@@ -36,10 +31,10 @@ const DestinationsManagement = () => {
         limit: 10,
         ...(searchTerm && { search: searchTerm })
       };
-      
+
       const response = await destinationsAPI.getAll(params);
       const data = response.data.data;
-      
+
       setDestinations(data.destinations || []);
       setTotalPages(Math.ceil((data.pagination?.total || 0) / 10));
     } catch (error) {
@@ -48,7 +43,11 @@ const DestinationsManagement = () => {
     } finally {
       setLoading(false);
     }
-  };
+  }, [currentPage, searchTerm]);
+
+  useEffect(() => {
+    fetchDestinations();
+  }, [fetchDestinations]);
 
   const handleDelete = async (destinationId) => {
     try {
@@ -179,7 +178,7 @@ const DestinationsManagement = () => {
               <MapPin className="h-12 w-12 text-gray-400 mx-auto mb-4" />
               <h3 className="text-lg font-medium text-gray-900 mb-2">No destinations found</h3>
               <p className="text-gray-600 mb-6">
-                {searchTerm 
+                {searchTerm
                   ? `No destinations match "${searchTerm}"`
                   : "Get started by adding your first destination"
                 }
@@ -270,13 +269,12 @@ const DestinationsManagement = () => {
                           </div>
                         </td>
                         <td className="px-6 py-4 whitespace-nowrap">
-                          <span className={`inline-flex px-2 py-1 text-xs font-semibold rounded-full ${
-                            destination.status === 'active' 
-                              ? 'bg-green-100 text-green-800'
-                              : destination.status === 'pending'
+                          <span className={`inline-flex px-2 py-1 text-xs font-semibold rounded-full ${destination.status === 'active'
+                            ? 'bg-green-100 text-green-800'
+                            : destination.status === 'pending'
                               ? 'bg-yellow-100 text-yellow-800'
                               : 'bg-red-100 text-red-800'
-                          }`}>
+                            }`}>
                             {destination.status || 'active'}
                           </span>
                         </td>

@@ -8,14 +8,13 @@ const Register = () => {
   const [formData, setFormData] = useState({
     name: '',
     email: '',
-    password: '',
-    confirmPassword: ''
+    password: ''
   });
   const [error, setError] = useState('');
   const [loading, setLoading] = useState(false);
   const [showPassword, setShowPassword] = useState(false);
   const [showConfirmPassword, setShowConfirmPassword] = useState(false);
-  
+
   const { register, isAuthenticated } = useAuth();
   const navigate = useNavigate();
 
@@ -53,20 +52,20 @@ const Register = () => {
 
     const { confirmPassword, ...userData } = formData;
     const result = await register(userData);
-    
+
     if (result.success) {
       navigate('/dashboard', { replace: true });
     } else {
       setError(result.message);
     }
-    
+
     setLoading(false);
   };
 
   // Password strength checker
   const getPasswordStrength = (password) => {
     if (!password) return { strength: 0, text: '', color: '' };
-    
+
     let strength = 0;
     if (password.length >= 6) strength++;
     if (password.match(/[a-z]/)) strength++;
@@ -110,7 +109,7 @@ const Register = () => {
               <Sparkles className="h-4 w-4 mr-2" />
               Join the Adventure
             </motion.div>
-            
+
             <h2 className="text-3xl font-bold text-gray-900 mb-2">
               Create your account
             </h2>
@@ -124,7 +123,7 @@ const Register = () => {
               </Link>
             </p>
           </div>
-          
+
           {/* Form */}
           <motion.form
             initial={{ opacity: 0, y: 20 }}
@@ -142,7 +141,7 @@ const Register = () => {
                 {error}
               </motion.div>
             )}
-            
+
             <div className="space-y-4">
               {/* Name Field */}
               <div>
@@ -164,7 +163,7 @@ const Register = () => {
                   />
                 </div>
               </div>
-              
+
               {/* Email Field */}
               <div>
                 <label htmlFor="email" className="block text-sm font-medium text-gray-700 mb-2">
@@ -185,7 +184,7 @@ const Register = () => {
                   />
                 </div>
               </div>
-              
+
               {/* Password Field */}
               <div>
                 <label htmlFor="password" className="block text-sm font-medium text-gray-700 mb-2">
@@ -227,7 +226,7 @@ const Register = () => {
                   </div>
                 )}
               </div>
-              
+
               {/* Confirm Password Field */}
               <div>
                 <label htmlFor="confirmPassword" className="block text-sm font-medium text-gray-700 mb-2">
@@ -241,13 +240,12 @@ const Register = () => {
                     type={showConfirmPassword ? 'text' : 'password'}
                     autoComplete="new-password"
                     required
-                    className={`w-full pl-12 pr-12 py-3 border rounded-xl focus:ring-2 focus:ring-emerald-500 transition-all duration-200 text-gray-900 placeholder-gray-500 ${
-                      formData.confirmPassword 
-                        ? passwordsMatch 
-                          ? 'border-green-300 focus:border-green-500' 
+                    className={`w-full pl-12 pr-12 py-3 border rounded-xl focus:ring-2 focus:ring-emerald-500 transition-all duration-200 text-gray-900 placeholder-gray-500 ${formData.confirmPassword
+                        ? passwordsMatch
+                          ? 'border-green-300 focus:border-green-500'
                           : 'border-red-300 focus:border-red-500'
                         : 'border-gray-300 focus:border-emerald-500'
-                    }`}
+                      }`}
                     placeholder="Confirm your password"
                     value={formData.confirmPassword}
                     onChange={handleChange}
@@ -310,7 +308,7 @@ const Register = () => {
           <div className="absolute top-40 right-20 w-72 h-72 bg-teal-400 rounded-full mix-blend-multiply filter blur-xl opacity-30 animate-blob animation-delay-2000"></div>
           <div className="absolute bottom-20 left-40 w-72 h-72 bg-blue-400 rounded-full mix-blend-multiply filter blur-xl opacity-30 animate-blob animation-delay-4000"></div>
         </div>
-        
+
         <div className="relative z-10 flex flex-col justify-center items-center text-white p-12">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
