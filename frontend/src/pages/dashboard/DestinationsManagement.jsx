@@ -12,6 +12,8 @@ import {
   MoreVertical,
   Calendar
 } from 'lucide-react';
+// eslint-disable-next-line no-unused-vars
+import { motion, AnimatePresence } from 'framer-motion';
 import { destinationsAPI } from '../../services/api';
 
 const DestinationsManagement = () => {

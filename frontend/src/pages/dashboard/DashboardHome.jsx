@@ -18,6 +18,8 @@ import {
   Navigation,
   MoreHorizontal
 } from 'lucide-react';
+// eslint-disable-next-line no-unused-vars
+import { motion } from 'framer-motion';
 import { destinationsAPI } from '../../services/api';
 
 const DashboardHome = () => {
