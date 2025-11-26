@@ -12,6 +12,16 @@ const destinationSchema = new mongoose.Schema({
     required: [true, 'Please provide a description'],
     maxlength: [2000, 'Description cannot exceed 2000 characters']
   },
+  history: {
+    type: String,
+    required: false,
+    maxlength: [5000, 'History cannot exceed 5000 characters']
+  },
+  famousFor: {
+    type: String,
+    required: false,
+    maxlength: [500, 'Famous for cannot exceed 500 characters']
+  },
   location: {
     type: String,
     required: [true, 'Please provide a location'],
@@ -96,7 +106,7 @@ const destinationSchema = new mongoose.Schema({
 });
 
 // Create indexes for better search performance
-destinationSchema.index({ title: 'text', description: 'text', location: 'text' });
+destinationSchema.index({ title: 'text', description: 'text', location: 'text', history: 'text', famousFor: 'text' });
 destinationSchema.index({ tags: 1 });
 destinationSchema.index({ location: 1 });
 destinationSchema.index({ 'rating.average': -1 });

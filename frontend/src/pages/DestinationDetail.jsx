@@ -126,6 +126,26 @@ const DestinationDetail = () => {
               </p>
             </div>
 
+            {/* History */}
+            {destination.history && (
+              <div className="mb-6">
+                <h2 className="text-xl font-semibold text-gray-900 mb-3">History</h2>
+                <p className="text-gray-700 leading-relaxed whitespace-pre-line">
+                  {destination.history}
+                </p>
+              </div>
+            )}
+
+            {/* Famous For */}
+            {destination.famousFor && (
+              <div className="mb-6">
+                <h2 className="text-xl font-semibold text-gray-900 mb-3">Famous For</h2>
+                <p className="text-gray-700 leading-relaxed">
+                  {destination.famousFor}
+                </p>
+              </div>
+            )}
+
             {/* Additional Images */}
             {destination.images?.length > 1 && (
               <div className="mb-6">
@@ -221,7 +241,7 @@ const DestinationDetail = () => {
           </div>
         </div>
       </div>
-    </div>
+    </div >
   );
 };
 
