@@ -8,6 +8,14 @@ const registerUser = async (req, res) => {
   try {
     const { name, email, password } = req.body;
 
+    // Validate input
+    if (!name || !email || !password) {
+      return res.status(400).json({
+        status: 'error',
+        message: 'Please provide name, email and password'
+      });
+    }
+
     // Check if user exists
     const userExists = await User.findOne({ email });
 
@@ -44,6 +52,16 @@ const registerUser = async (req, res) => {
     }
   } catch (error) {
     console.error('Registration error:', error);
+
+    // Handle Mongoose validation errors
+    if (error.name === 'ValidationError') {
+      const messages = Object.values(error.errors).map(val => val.message);
+      return res.status(400).json({
+        status: 'error',
+        message: messages.join(', ')
+      });
+    }
+
     res.status(500).json({
       status: 'error',
       message: 'Server error during registration'
