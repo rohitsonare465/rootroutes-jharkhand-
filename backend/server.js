@@ -36,12 +36,14 @@ const corsOptions = {
     const allowedOrigins = [
       'http://localhost:3000',
       'http://localhost:5173',
+      'http://localhost:4173', // Vite preview
       'http://localhost:8080',
       normalizedFrontendUrl
     ];
 
     const isLocalhost = origin.startsWith('http://localhost:') || origin.startsWith('http://127.0.0.1:');
-    const isAllowed = allowedOrigins.includes(normalizedOrigin);
+    const isVercel = origin.endsWith('.vercel.app'); // Allow all Vercel deployments
+    const isAllowed = allowedOrigins.includes(normalizedOrigin) || isVercel;
 
     if (isAllowed || isLocalhost) {
       callback(null, true);
