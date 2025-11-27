@@ -9,7 +9,6 @@ import {
   User,
   LogOut,
   Compass,
-  Mountain,
   Home,
   Settings,
   Bell,
@@ -75,8 +74,8 @@ const Navbar = () => {
               <div className="relative">
                 {/* Animated Glow Effect */}
                 <div className="absolute inset-0 bg-gradient-to-r from-blue-500 to-emerald-500 rounded-2xl blur-lg opacity-30 group-hover:opacity-50 transition-all duration-300" />
-                <div className="relative bg-gradient-to-br from-blue-600 to-emerald-600 p-3 rounded-2xl shadow-lg group-hover:shadow-xl transition-all duration-300">
-                  <Mountain className="h-7 w-7 text-white" />
+                <div className="relative bg-gradient-to-br from-blue-600 to-emerald-600 p-2 rounded-2xl shadow-lg group-hover:shadow-xl transition-all duration-300">
+                  <img src="/logo.png" alt="RootRoutes Logo" className="h-9 w-9 object-contain" />
                 </div>
               </div>
               <div>
