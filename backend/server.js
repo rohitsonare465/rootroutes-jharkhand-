@@ -76,6 +76,7 @@ app.use('/api/auth', authRoutes);
 app.use('/api/destinations', destinationRoutes);
 app.use('/api/trips', require('./routes/tripRoutes'));
 app.use('/api/culture', require('./routes/cultureRoutes'));
+app.use('/api/hotels', require('./routes/hotelRoutes'));
 
 // Health check endpoint
 app.get('/api/health', (req, res) => {

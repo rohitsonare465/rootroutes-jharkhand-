@@ -81,4 +81,9 @@ export const healthAPI = {
   check: () => api.get('/health'),
 };
 
+// Hotels API calls
+export const hotelsAPI = {
+  search: (params) => api.get('/hotels/search', { params }),
+};
+
 export default api;
