@@ -13,7 +13,7 @@ import HotelCard from '../../components/HotelCard';
 
 const HotelsBooking = () => {
   const [searchFilters, setSearchFilters] = useState({
-    location: '',
+    location: 'Ranchi',
     checkIn: '',
     checkOut: '',
     guests: 1,
