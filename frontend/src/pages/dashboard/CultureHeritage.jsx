@@ -79,6 +79,41 @@ const CultureHeritage = () => {
     );
   }
 
+  const hasData = data.sites.length > 0 || data.tribes.length > 0 || data.festivals.length > 0 || data.artForms.length > 0;
+
+  if (!hasData) {
+    return (
+      <div className="space-y-6">
+        <div className="bg-gradient-to-r from-orange-500 to-red-600 rounded-lg shadow-lg p-8 text-white">
+          <div className="flex items-center justify-between">
+            <div>
+              <h1 className="text-4xl font-bold mb-2">Culture & Heritage</h1>
+              <p className="text-orange-100 text-lg">Explore the rich cultural tapestry of Jharkhand</p>
+            </div>
+            <div className="hidden md:block">
+              <BookOpen className="w-16 h-16 text-orange-200" />
+            </div>
+          </div>
+        </div>
+        <div className="text-center py-20 bg-white rounded-lg shadow-sm">
+          <div className="opacity-50 mb-4">
+            <BookOpen className="w-16 h-16 mx-auto text-gray-400" />
+          </div>
+          <h2 className="text-xl font-semibold text-gray-700 mb-2">No cultural data available</h2>
+          <p className="text-gray-500 mb-6 max-w-md mx-auto">
+            We couldn't find any cultural heritage information at the moment. Please check back later or try refreshing.
+          </p>
+          <button
+            onClick={fetchCultureData}
+            className="bg-orange-600 text-white px-6 py-2 rounded-lg hover:bg-orange-700 transition"
+          >
+            Refresh Data
+          </button>
+        </div>
+      </div>
+    );
+  }
+
   return (
     <div className="space-y-6">
       {/* Header */}
