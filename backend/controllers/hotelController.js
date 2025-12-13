@@ -17,7 +17,9 @@ exports.searchHotels = async (req, res, next) => {
         }
 
         // 1. Check if API key is configured
-        if (!process.env.RAPIDAPI_KEY || process.env.RAPIDAPI_KEY === 'your_rapidapi_key_here') {
+        // We now check if it's strictly the placeholder or empty.
+        // If the user appended their key, we trust it's there.
+        if (!process.env.RAPIDAPI_KEY || process.env.RAPIDAPI_KEY.trim() === '' || process.env.RAPIDAPI_KEY === 'your_rapidapi_key_here') {
             // Return mock data fallback
             console.warn('RapidAPI Key not configured. Returning mock data.');
             return res.status(200).json({
@@ -44,13 +46,16 @@ exports.searchHotels = async (req, res, next) => {
             });
         }
 
+        // Ensure no whitespace in key
+        const apiKey = process.env.RAPIDAPI_KEY.trim();
+
         // 2. First request: Get Destination ID
         const destOptions = {
             method: 'GET',
             url: `https://${process.env.RAPIDAPI_HOST}/api/v1/hotels/searchDestination`,
             params: { query: query },
             headers: {
-                'X-RapidAPI-Key': process.env.RAPIDAPI_KEY,
+                'X-RapidAPI-Key': apiKey,
                 'X-RapidAPI-Host': process.env.RAPIDAPI_HOST
             }
         };
@@ -58,9 +63,11 @@ exports.searchHotels = async (req, res, next) => {
         const destResponse = await axios.request(destOptions);
 
         if (!destResponse.data || !destResponse.data.data || destResponse.data.data.length === 0) {
+            // Try a broader search if "Jharkhand" or specific city failed, 
+            // but here we just return not found for now to be safe.
             return res.status(404).json({
                 success: false,
-                message: 'Location not found'
+                message: `Location '${query}' not found. Try a major city like Ranchi, Jamshedpur, or Deoghar.`
             });
         }
 
@@ -96,7 +103,7 @@ exports.searchHotels = async (req, res, next) => {
                 currency_code: 'INR'
             },
             headers: {
-                'X-RapidAPI-Key': process.env.RAPIDAPI_KEY,
+                'X-RapidAPI-Key': apiKey,
                 'X-RapidAPI-Host': process.env.RAPIDAPI_HOST
             }
         };

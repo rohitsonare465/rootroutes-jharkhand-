@@ -55,8 +55,17 @@ const HotelCard = ({ hotel }) => {
                     </div>
                 )}
                 <div className="absolute top-4 right-4">
-                    <button className="p-2 bg-white rounded-full shadow-md hover:bg-gray-50 transition-colors">
-                        <Heart className="w-4 h-4 text-gray-600" />
+                    <button
+                        className="p-2 bg-white rounded-full shadow-md hover:bg-gray-50 transition-colors group"
+                        onClick={(e) => {
+                            e.preventDefault();
+                            e.stopPropagation();
+                            // Logic to toggle favorite could go here
+                            console.log('Added to favorites:', hotel.name);
+                            alert(`Added ${hotel.name} to favorites!`);
+                        }}
+                    >
+                        <Heart className="w-4 h-4 text-gray-600 group-hover:text-red-500 group-hover:fill-current transition-colors" />
                     </button>
                 </div>
                 {hotel.availability && (
@@ -117,13 +126,13 @@ const HotelCard = ({ hotel }) => {
                         </div>
                         <span className="text-xs text-gray-500">per night</span>
                     </div>
-                    <Link
-                        to={`/dashboard/hotels/${hotel.id}/book`}
+                    <button
+                        onClick={() => alert(`Initiating booking for ${hotel.name}. This feature is coming soon!`)}
                         className="bg-blue-600 text-white px-4 py-2 rounded-lg hover:bg-blue-700 transition-colors text-sm font-medium flex items-center"
                     >
                         Book Now
                         <ArrowRight className="w-4 h-4 ml-1" />
-                    </Link>
+                    </button>
                 </div>
             </div>
         </div>
