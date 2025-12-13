@@ -75,6 +75,7 @@ app.use(express.urlencoded({ extended: true }));
 app.use('/api/auth', authRoutes);
 app.use('/api/destinations', destinationRoutes);
 app.use('/api/trips', require('./routes/tripRoutes'));
+app.use('/api/culture', require('./routes/cultureRoutes'));
 
 // Health check endpoint
 app.get('/api/health', (req, res) => {

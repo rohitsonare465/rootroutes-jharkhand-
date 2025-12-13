@@ -53,7 +53,7 @@ const registerUser = async (req, res) => {
   } catch (error) {
     console.error('Registration error:', error);
 
-    // Handle Mongoose validation errors
+   22 // Handle Mongoose validation errors
     if (error.name === 'ValidationError') {
       const messages = Object.values(error.errors).map(val => val.message);
       return res.status(400).json({

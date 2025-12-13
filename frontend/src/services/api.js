@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-const API_URL = import.meta.env.VITE_API_URL || 'http://localhost:5000/api';
+const API_URL = import.meta.env.VITE_API_URL || 'http://localhost:5001/api';
 
 // Create axios instance
 const api = axios.create({
@@ -66,6 +66,14 @@ export const tripsAPI = {
   create: (data) => api.post('/trips', data),
   update: (id, data) => api.put(`/trips/${id}`, data),
   delete: (id) => api.delete(`/trips/${id}`),
+};
+
+// Culture API calls
+export const cultureAPI = {
+  getAll: (params) => api.get('/culture', { params }),
+  getById: (id) => api.get(`/culture/${id}`),
+  create: (data) => api.post('/culture', data),
+  seed: () => api.post('/culture/seed'),
 };
 
 // Health check
