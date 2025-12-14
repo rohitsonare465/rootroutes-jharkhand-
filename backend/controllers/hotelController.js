@@ -98,15 +98,19 @@ exports.searchHotels = async (req, res, next) => {
         const destId = destination.dest_id;
         const searchType = destination.search_type;
 
-        // Calculate dates (next weekend) for sample availability
+        // Calculate dates if not provided
         const today = new Date();
-        const nextWeek = new Date(today);
-        nextWeek.setDate(today.getDate() + 7);
-        const dayAfter = new Date(nextWeek);
-        dayAfter.setDate(nextWeek.getDate() + 1);
+        const tomorrow = new Date(today);
+        tomorrow.setDate(today.getDate() + 1);
+        const dayAfter = new Date(tomorrow);
+        dayAfter.setDate(tomorrow.getDate() + 1);
 
-        const checkin = nextWeek.toISOString().split('T')[0];
-        const checkout = dayAfter.toISOString().split('T')[0];
+        const defaultCheckin = tomorrow.toISOString().split('T')[0];
+        const defaultCheckout = dayAfter.toISOString().split('T')[0];
+
+        const checkinDate = req.query.checkIn || defaultCheckin;
+        const checkoutDate = req.query.checkOut || defaultCheckout;
+        const guests = req.query.guests || '1';
 
         // 3. Second request: Search Hotels by Destination ID
         const searchOptions = {
@@ -115,9 +119,9 @@ exports.searchHotels = async (req, res, next) => {
             params: {
                 dest_id: destId,
                 search_type: searchType,
-                arrival_date: checkin,
-                departure_date: checkout,
-                adults: '1',
+                arrival_date: checkinDate,
+                departure_date: checkoutDate,
+                adults: guests,
                 room_qty: '1',
                 page_number: '1',
                 units: 'metric',
@@ -134,20 +138,29 @@ exports.searchHotels = async (req, res, next) => {
         const hotelsResponse = await axios.request(searchOptions);
 
         // 4. Transform Data
-        const hotels = hotelsResponse.data.data.hotels.map(hotel => ({
-            id: hotel.hotel_id,
-            name: hotel.property.name,
-            location: query, // Or use hotel.property.country_trans
-            rating: hotel.property.reviewScore,
-            reviews: hotel.property.reviewCount,
-            price: hotel.property.priceBreakdown?.grossPrice?.value || 'N/A',
-            originalPrice: hotel.property.priceBreakdown?.strikethroughPrice?.value,
-            image: hotel.property.photoUrls?.[0]?.replace('square60', 'square500') || 'https://images.unsplash.com/photo-1566073771259-6a8506099945?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80',
-            amenities: ['Wifi', 'Parking'], // API might not return this directly in search list
-            category: 'Hotel', // Can derive from class
-            availability: 'Available',
-            discount: hotel.property.priceBreakdown?.benefitBadges?.[0]?.text || 0
-        }));
+        // Booking.com API structure requires careful navigation
+        const hotels = hotelsResponse.data.data.hotels.map(hotel => {
+            // Construct a deep link if not directly provided (generic booking.com search fallback if needed, but usually we mock or find one)
+            // Real API doesn't always give a direct 'deep_link' in this simple endpoint, but we can try to use the property structure.
+            // For now, we will link to a generic booking page with the hotel name search if specific URL is missing.
+
+            return {
+                id: hotel.hotel_id,
+                name: hotel.property.name,
+                location: query,
+                rating: hotel.property.reviewScore || 'N/A',
+                reviews: hotel.property.reviewCount || 0,
+                price: hotel.property.priceBreakdown?.grossPrice?.value || 'N/A',
+                originalPrice: hotel.property.priceBreakdown?.strikethroughPrice?.value,
+                image: hotel.property.photoUrls?.[0]?.replace('square60', 'square500') || 'https://images.unsplash.com/photo-1566073771259-6a8506099945',
+                amenities: ['Wifi', 'Parking'], // Placeholder as detailed amenities often require detail endpoint
+                category: 'Hotel',
+                availability: 'Available',
+                discount: hotel.property.priceBreakdown?.benefitBadges?.[0]?.text || 0,
+                // Booking.com deep link construction or use logic if API provides (simplified for this task)
+                url: `https://www.booking.com/searchresults.html?dest_id=${destId}&dest_type=${searchType}&checkin=${checkinDate}&checkout=${checkoutDate}&group_adults=${guests}&no_rooms=1&selected_currency=INR`
+            };
+        });
 
         res.status(200).json({
             success: true,

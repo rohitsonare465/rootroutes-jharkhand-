@@ -126,13 +126,15 @@ const HotelCard = ({ hotel }) => {
                         </div>
                         <span className="text-xs text-gray-500">per night</span>
                     </div>
-                    <button
-                        onClick={() => alert(`Initiating booking for ${hotel.name}. This feature is coming soon!`)}
+                    <a
+                        href={hotel.url}
+                        target="_blank"
+                        rel="noopener noreferrer"
                         className="bg-blue-600 text-white px-4 py-2 rounded-lg hover:bg-blue-700 transition-colors text-sm font-medium flex items-center"
                     >
                         Book Now
                         <ArrowRight className="w-4 h-4 ml-1" />
-                    </button>
+                    </a>
                 </div>
             </div>
         </div>

@@ -21,6 +21,8 @@ const HotelsBooking = () => {
   });
 
   const [hotels, setHotels] = useState([]);
+  const [filteredHotels, setFilteredHotels] = useState([]);
+  const [activeCategory, setActiveCategory] = useState('all');
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
 
@@ -35,6 +37,9 @@ const HotelsBooking = () => {
     try {
       const params = {};
       if (searchFilters.location) params.query = searchFilters.location;
+      if (searchFilters.checkIn) params.checkIn = searchFilters.checkIn;
+      if (searchFilters.checkOut) params.checkOut = searchFilters.checkOut;
+      if (searchFilters.guests) params.guests = searchFilters.guests;
 
       const response = await hotelsAPI.search(params);
 
@@ -48,15 +53,34 @@ const HotelsBooking = () => {
 
       // If no hotels found or empty, we might want to show some suggestions or nothing
       setHotels(hotelData);
+      setFilteredHotels(hotelData); // Initialize filtered list
 
     } catch (err) {
       console.error('Error fetching hotels:', err);
       // Fallback to empty array prevents crash, but error message is good
-      setError('Failed to fetch hotels. Please try again or check your API configuration.');
+      setError(err.response?.data?.message || 'Failed to fetch hotels. Please try again or check your API configuration.');
     } finally {
       setLoading(false);
     }
   };
+
+  // Filter effect
+  useEffect(() => {
+    if (activeCategory === 'all') {
+      setFilteredHotels(hotels);
+    } else {
+      // Simple client-side filtering logic based on categories
+      // Since API doesn't return easy categories, we mock logic or filter by price/rating hints
+      const filtered = hotels.filter(hotel => {
+        if (activeCategory === 'luxury') return (hotel.rating >= 4.5 || (typeof hotel.price === 'number' && hotel.price > 4000));
+        if (activeCategory === 'premium') return (hotel.rating >= 4.0 && hotel.rating < 4.5);
+        if (activeCategory === 'business') return hotel.amenities?.includes('Wifi');
+        if (activeCategory === 'heritage') return hotel.name.toLowerCase().includes('palace') || hotel.name.toLowerCase().includes('heritage');
+        return true;
+      });
+      setFilteredHotels(filtered);
+    }
+  }, [activeCategory, hotels]);
 
   const handleSearch = (e) => {
     e.preventDefault();
@@ -165,7 +189,11 @@ const HotelsBooking = () => {
           {categories.map((category) => (
             <button
               key={category.value}
-              className="px-4 py-2 border border-gray-300 rounded-full hover:bg-blue-50 hover:border-blue-300 transition-colors text-sm font-medium"
+              onClick={() => setActiveCategory(category.value)}
+              className={`px-4 py-2 border rounded-full transition-colors text-sm font-medium ${activeCategory === category.value
+                  ? 'bg-blue-600 text-white border-blue-600'
+                  : 'border-gray-300 text-gray-700 hover:bg-blue-50 hover:border-blue-300'
+                }`}
             >
               {category.name}
             </button>
@@ -189,7 +217,7 @@ const HotelsBooking = () => {
         </div>
       ) : (
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-          {hotels.map((hotel, index) => (
+          {filteredHotels.map((hotel, index) => (
             <HotelCard key={hotel.id || index} hotel={hotel} />
           ))}
         </div>
