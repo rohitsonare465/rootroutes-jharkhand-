@@ -17,11 +17,18 @@ exports.searchHotels = async (req, res, next) => {
         }
 
         // 1. Check if API key is configured
-        // We now check if it's strictly the placeholder or empty.
-        // If the user appended their key, we trust it's there.
-        if (!process.env.RAPIDAPI_KEY || process.env.RAPIDAPI_KEY.trim() === '' || process.env.RAPIDAPI_KEY === 'your_rapidapi_key_here') {
+        const apiKey = process.env.RAPIDAPI_KEY ? process.env.RAPIDAPI_KEY.trim() : '';
+        const isKeyConfigured = apiKey && apiKey !== 'your_rapidapi_key_here';
+
+        console.log(`[HotelAPI] Key configured: ${isKeyConfigured ? 'YES' : 'NO'}`);
+        if (isKeyConfigured) {
+            console.log(`[HotelAPI] Key length: ${apiKey.length}`);
+            console.log(`[HotelAPI] Host: ${process.env.RAPIDAPI_HOST}`);
+        }
+
+        if (!isKeyConfigured) {
             // Return mock data fallback
-            console.warn('RapidAPI Key not configured. Returning mock data.');
+            console.warn('RapidAPI Key not configured or invalid. Returning mock data.');
             return res.status(200).json({
                 success: true,
                 count: 2,
@@ -32,7 +39,8 @@ exports.searchHotels = async (req, res, next) => {
                         price: 2500,
                         rating: 4.5,
                         image: 'https://images.unsplash.com/photo-1566073771259-6a8506099945?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80',
-                        amenities: ['Wifi', 'Parking']
+                        amenities: ['Wifi', 'Parking'],
+                        availability: 'Available'
                     },
                     {
                         name: `Grand ${query} Resort`,
@@ -40,16 +48,15 @@ exports.searchHotels = async (req, res, next) => {
                         price: 5000,
                         rating: 4.8,
                         image: 'https://images.unsplash.com/photo-1520250497591-112f2f40a3f4?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80',
-                        amenities: ['Pool', 'Spa']
+                        amenities: ['Pool', 'Spa'],
+                        availability: 'Limited'
                     }
                 ]
             });
         }
 
-        // Ensure no whitespace in key
-        const apiKey = process.env.RAPIDAPI_KEY.trim();
-
         // 2. First request: Get Destination ID
+        console.log(`[HotelAPI] Searching destination: ${query}`);
         const destOptions = {
             method: 'GET',
             url: `https://${process.env.RAPIDAPI_HOST}/api/v1/hotels/searchDestination`,
@@ -60,7 +67,23 @@ exports.searchHotels = async (req, res, next) => {
             }
         };
 
-        const destResponse = await axios.request(destOptions);
+        let destResponse;
+        try {
+            destResponse = await axios.request(destOptions);
+            console.log(`[HotelAPI] Destination search status: ${destResponse.status}`);
+        } catch (error) {
+            console.error('[HotelAPI] Destination search failed:', error.message);
+            if (error.response) {
+                console.error('[HotelAPI] Error data:', JSON.stringify(error.response.data));
+                // Return the actual error to the frontend for debugging
+                return res.status(error.response.status).json({
+                    success: false,
+                    message: 'RapidAPI Connection Failed',
+                    error: error.response.data
+                });
+            }
+            throw error; // Let generic handler catch it
+        }
 
         if (!destResponse.data || !destResponse.data.data || destResponse.data.data.length === 0) {
             // Try a broader search if "Jharkhand" or specific city failed, 
