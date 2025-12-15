@@ -17,8 +17,9 @@ const destinations = [
             longitude: 84.1903
         },
         images: [
-            { url: 'https://images.unsplash.com/photo-1598091383021-15ddea10925d?w=800&h=600&fit=crop', alt: 'Betla National Park' },
-            { url: 'https://images.unsplash.com/photo-1549366021-9f761d040a94?w=800&h=600&fit=crop', alt: 'Wildlife' }
+            { url: 'https://images.unsplash.com/photo-1598091383021-15ddea10925d?w=800&h=600&fit=crop&q=80', alt: 'Betla National Park landscape' },
+            { url: 'https://images.unsplash.com/photo-1549366021-9f761d040a94?w=800&h=600&fit=crop&q=80', alt: 'Wildlife at Betla National Park' },
+            { url: 'https://images.unsplash.com/photo-1518709766631-a6a7f45921c3?w=800&h=600&fit=crop&q=80', alt: 'Betla forest trail' }
         ],
         tags: ['wildlife', 'forest', 'historical', 'adventure', 'nature'],
         difficulty: 'easy',
@@ -38,7 +39,9 @@ const destinations = [
             longitude: 85.5417
         },
         images: [
-            { url: 'https://images.unsplash.com/photo-1432405972618-c60b0225b8f9?w=800&h=600&fit=crop', alt: 'Dassam Falls' }
+            { url: 'https://images.unsplash.com/photo-1432405972618-c60b0225b8f9?w=800&h=600&fit=crop&q=80', alt: 'Dassam Falls cascade' },
+            { url: 'https://images.unsplash.com/photo-1433086966358-54859d0ed716?w=800&h=600&fit=crop&q=80', alt: 'Dassam Falls surrounded by nature' },
+            { url: 'https://images.unsplash.com/photo-1426604966848-d7adac402bff?w=800&h=600&fit=crop&q=80', alt: 'Dassam Falls view' }
         ],
         tags: ['waterfall', 'nature', 'picnic', 'photography'],
         difficulty: 'easy',
@@ -58,7 +61,9 @@ const destinations = [
             longitude: 86.6997
         },
         images: [
-            { url: 'https://images.unsplash.com/photo-1561361513-2d000a50f0dc?w=800&h=600&fit=crop', alt: 'Baidyanath Dham' }
+            { url: 'https://images.unsplash.com/photo-1561361513-2d000a50f0dc?w=800&h=600&fit=crop&q=80', alt: 'Baidyanath Dham temple' },
+            { url: 'https://images.unsplash.com/photo-1624716723225-4122d1d07c0e?w=800&h=600&fit=crop&q=80', alt: 'Baidyanath temple architecture' },
+            { url: 'https://images.unsplash.com/photo-1590053163976-5c21a5e714f2?w=800&h=600&fit=crop&q=80', alt: 'Devotees at Baidyanath Dham' }
         ],
         tags: ['religious', 'temple', 'cultural', 'historical'],
         difficulty: 'easy',
@@ -78,7 +83,9 @@ const destinations = [
             longitude: 85.6544
         },
         images: [
-            { url: 'https://images.unsplash.com/photo-1432405972618-c60b0225b8f9?w=800&h=600&fit=crop', alt: 'Hundru Falls' }
+            { url: 'https://images.unsplash.com/photo-1432405972618-c60b0225b8f9?w=800&h=600&fit=crop&q=80', alt: 'Hundru Falls from top' },
+            { url: 'https://images.unsplash.com/photo-1501594907352-04cda38ebc29?w=800&h=600&fit=crop&q=80', alt: 'Hundru Falls cascade' },
+            { url: 'https://images.unsplash.com/photo-1426604966848-d7adac402bff?w=800&h=600&fit=crop&q=80', alt: 'Hundru Falls rock formations' }
         ],
         tags: ['waterfall', 'nature', 'adventure', 'photography'],
         difficulty: 'moderate',
@@ -98,7 +105,9 @@ const destinations = [
             longitude: 86.1286
         },
         images: [
-            { url: 'https://images.unsplash.com/photo-1519681393784-d120267933ba?w=800&h=600&fit=crop', alt: 'Parasnath Hills' }
+            { url: 'https://images.unsplash.com/photo-1519681393784-d120267933ba?w=800&h=600&fit=crop&q=80', alt: 'Parasnath Hills peak' },
+            { url: 'https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?w=800&h=600&fit=crop&q=80', alt: 'Parasnath Hills mountain view' },
+            { url: 'https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=800&h=600&fit=crop&q=80', alt: 'Parasnath Hills trekking trail' }
         ],
         tags: ['religious', 'trek', 'mountain', 'historical'],
         difficulty: 'difficult',
@@ -118,7 +127,9 @@ const destinations = [
             longitude: 84.2667
         },
         images: [
-            { url: 'https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?w=800&h=600&fit=crop', alt: 'Netarhat' }
+            { url: 'https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?w=800&h=600&fit=crop&q=80', alt: 'Netarhat hill station view' },
+            { url: 'https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=800&h=600&fit=crop&q=80', alt: 'Netarhat sunrise' },
+            { url: 'https://images.unsplash.com/photo-1469854523086-cc02fe5d8800?w=800&h=600&fit=crop&q=80', alt: 'Netarhat pine forests' }
         ],
         tags: ['hill-station', 'nature', 'romantic', 'photography'],
         difficulty: 'easy',
@@ -138,7 +149,9 @@ const destinations = [
             longitude: 85.6000
         },
         images: [
-            { url: 'https://images.unsplash.com/photo-1432405972618-c60b0225b8f9?w=800&h=600&fit=crop', alt: 'Jonha Falls' }
+            { url: 'https://images.unsplash.com/photo-1432405972618-c60b0225b8f9?w=800&h=600&fit=crop&q=80', alt: 'Jonha Falls waterfall' },
+            { url: 'https://images.unsplash.com/photo-1426604966848-d7adac402bff?w=800&h=600&fit=crop&q=80', alt: 'Jonha Falls Buddha temple' },
+            { url: 'https://images.unsplash.com/photo-1433086966358-54859d0ed716?w=800&h=600&fit=crop&q=80', alt: 'Jonha Falls surroundings' }
         ],
         tags: ['waterfall', 'religious', 'nature', 'picnic'],
         difficulty: 'easy',
@@ -158,7 +171,9 @@ const destinations = [
             longitude: 87.6833
         },
         images: [
-            { url: 'https://images.unsplash.com/photo-1566127444979-b3d2b654e3d7?w=800&h=600&fit=crop', alt: 'Maluti Temples' }
+            { url: 'https://images.unsplash.com/photo-1566127444979-b3d2b654e3d7?w=800&h=600&fit=crop&q=80', alt: 'Maluti Temples terracotta architecture' },
+            { url: 'https://images.unsplash.com/photo-1624716723225-4122d1d07c0e?w=800&h=600&fit=crop&q=80', alt: 'Maluti temple complex' },
+            { url: 'https://images.unsplash.com/photo-1561361513-2d000a50f0dc?w=800&h=600&fit=crop&q=80', alt: 'Maluti Temples heritage site' }
         ],
         tags: ['historical', 'temple', 'architecture', 'cultural'],
         difficulty: 'easy',
@@ -178,7 +193,9 @@ const destinations = [
             longitude: 85.2833
         },
         images: [
-            { url: 'https://images.unsplash.com/photo-1469854523086-cc02fe5d8800?w=800&h=600&fit=crop', alt: 'Patratu Valley' }
+            { url: 'https://images.unsplash.com/photo-1469854523086-cc02fe5d8800?w=800&h=600&fit=crop&q=80', alt: 'Patratu Valley winding roads' },
+            { url: 'https://images.unsplash.com/photo-1501594907352-04cda38ebc29?w=800&h=600&fit=crop&q=80', alt: 'Patratu Dam reservoir' },
+            { url: 'https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=800&h=600&fit=crop&q=80', alt: 'Patratu Valley scenic view' }
         ],
         tags: ['nature', 'adventure', 'photography', 'dam'],
         difficulty: 'easy',
@@ -198,7 +215,8 @@ const destinations = [
             longitude: 85.3333
         },
         images: [
-            { url: 'https://images.unsplash.com/photo-1519681393784-d120267933ba?w=800&h=600&fit=crop', alt: 'Tagore Hill' }
+            { url: 'https://images.unsplash.com/photo-1519681393784-d120267933ba?w=800&h=600&fit=crop&q=80', alt: 'Tagore Hill viewpoint' },
+            { url: 'https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=800&h=600&fit=crop&q=80', alt: 'Tagore Hill panoramic view' }
         ],
         tags: ['historical', 'cultural', 'viewpoint', 'nature'],
         difficulty: 'easy',
@@ -218,7 +236,9 @@ const destinations = [
             longitude: 84.1833
         },
         images: [
-            { url: 'https://images.unsplash.com/photo-1432405972618-c60b0225b8f9?w=800&h=600&fit=crop', alt: 'Lod Falls' }
+            { url: 'https://images.unsplash.com/photo-1432405972618-c60b0225b8f9?w=800&h=600&fit=crop&q=80', alt: 'Lodh Falls highest waterfall' },
+            { url: 'https://images.unsplash.com/photo-1433086966358-54859d0ed716?w=800&h=600&fit=crop&q=80', alt: 'Lodh Falls forest view' },
+            { url: 'https://images.unsplash.com/photo-1501594907352-04cda38ebc29?w=800&h=600&fit=crop&q=80', alt: 'Lodh Falls cascade' }
         ],
         tags: ['waterfall', 'trek', 'nature', 'adventure'],
         difficulty: 'moderate',
@@ -238,7 +258,9 @@ const destinations = [
             longitude: 86.2000
         },
         images: [
-            { url: 'https://images.unsplash.com/photo-1549366021-9f761d040a94?w=800&h=600&fit=crop', alt: 'Dalma Wildlife' }
+            { url: 'https://images.unsplash.com/photo-1549366021-9f761d040a94?w=800&h=600&fit=crop&q=80', alt: 'Dalma Wildlife Sanctuary elephants' },
+            { url: 'https://images.unsplash.com/photo-1425082661705-1834bfd09dca?w=800&h=600&fit=crop&q=80', alt: 'Dalma forest trail' },
+            { url: 'https://images.unsplash.com/photo-1518709766631-a6a7f45921c3?w=800&h=600&fit=crop&q=80', alt: 'Dalma wildlife view' }
         ],
         tags: ['wildlife', 'forest', 'trek', 'nature'],
         difficulty: 'moderate',
@@ -258,7 +280,9 @@ const destinations = [
             longitude: 86.1833
         },
         images: [
-            { url: 'https://images.unsplash.com/photo-1585320806297-9794b3e4eeae?w=800&h=600&fit=crop', alt: 'Jubilee Park' }
+            { url: 'https://images.unsplash.com/photo-1585320806297-9794b3e4eeae?w=800&h=600&fit=crop&q=80', alt: 'Jubilee Park garden ' },
+            { url: 'https://images.unsplash.com/photo-1544551763-46a013bb70d5?w=800&h=600&fit=crop&q=80', alt: 'Jubilee Park fountains' },
+            { url: 'https://images.unsplash.com/photo-1507525428034-b723cf961d3e?w=800&h=600&fit=crop&q=80', alt: 'Jubilee Park lake view' }
         ],
         tags: ['family-friendly', 'nature', 'park', 'recreation'],
         difficulty: 'easy',
@@ -278,7 +302,9 @@ const destinations = [
             longitude: 85.2817
         },
         images: [
-            { url: 'https://images.unsplash.com/photo-1624716723225-4122d1d07c0e?w=800&h=600&fit=crop', alt: 'Jagannath Temple' }
+            { url: 'https://images.unsplash.com/photo-1624716723225-4122d1d07c0e?w=800&h=600&fit=crop&q=80', alt: 'Jagannath Temple architecture' },
+            { url: 'https://images.unsplash.com/photo-1561361513-2d000a50f0dc?w=800&h=600&fit=crop&q=80', alt: 'Jagannath Temple complex' },
+            { url: 'https://images.unsplash.com/photo-1590053163976-5c21a5e714f2?w=800&h=600&fit=crop&q=80', alt: 'Jagannath Temple Rath Yatra' }
         ],
         tags: ['religious', 'temple', 'historical', 'cultural'],
         difficulty: 'easy',
@@ -298,7 +324,9 @@ const destinations = [
             longitude: 86.8000
         },
         images: [
-            { url: 'https://images.unsplash.com/photo-1568529324103-e83597d62730?w=800&h=600&fit=crop', alt: 'Maithon Dam' }
+            { url: 'https://images.unsplash.com/photo-1568529324103-e83597d62730?w=800&h=600&fit=crop&q=80', alt: 'Maithon Dam reservoir' },
+            { url: 'https://images.unsplash.com/photo-1501594907352-04cda38ebc29?w=800&h=600&fit=crop&q=80', alt: 'Maithon Dam boating' },
+            { url: 'https://images.unsplash.com/photo-1469474968028-56623f02e42e?w=800&h=600&fit=crop&q=80', alt: 'Maithon Dam scenic view' }
         ],
         tags: ['nature', 'dam', 'boating', 'picnic'],
         difficulty: 'easy',
@@ -318,7 +346,9 @@ const destinations = [
             longitude: 85.3108
         },
         images: [
-            { url: 'https://images.unsplash.com/photo-1590053163976-5c21a5e714f2?w=800&h=600&fit=crop', alt: 'Pahari Mandir' }
+            { url: 'https://images.unsplash.com/photo-1590053163976-5c21a5e714f2?w=800&h=600&fit=crop&q=80', alt: 'Pahari Mandir temple' },
+            { url: 'https://images.unsplash.com/photo-1519681393784-d120267933ba?w=800&h=600&fit=crop&q=80', alt: 'Pahari Mandir hilltop view' },
+            { url: 'https://images.unsplash.com/photo-1624716723225-4122d1d07c0e?w=800&h=600&fit=crop&q=80', alt: 'Pahari Mandir stairs' }
         ],
         tags: ['religious', 'viewpoint', 'historical'],
         difficulty: 'moderate',
@@ -338,7 +368,9 @@ const destinations = [
             longitude: 85.7170
         },
         images: [
-            { url: 'https://images.unsplash.com/photo-1605625902528-2615367d5c93?w=800&h=600&fit=crop', alt: 'Rajrappa Temple' }
+            { url: 'https://images.unsplash.com/photo-1605625902528-2615367d5c93?w=800&h=600&fit=crop&q=80', alt: 'Rajrappa Temple' },
+            { url: 'https://images.unsplash.com/photo-1624716723225-4122d1d07c0e?w=800&h=600&fit=crop&q=80', alt: 'Rajrappa temple architecture' },
+            { url: 'https://images.unsplash.com/photo-1426604966848-d7adac402bff?w=800&h=600&fit=crop&q=80', alt: 'Rajrappa river confluence' }
         ],
         tags: ['religious', 'temple', 'river'],
         difficulty: 'easy',
@@ -358,7 +390,9 @@ const destinations = [
             longitude: 85.3553
         },
         images: [
-            { url: 'https://images.unsplash.com/photo-1518709766631-a6a7f45921c3?w=800&h=600&fit=crop', alt: 'Hazaribagh National Park' }
+            { url: 'https://images.unsplash.com/photo-1518709766631-a6a7f45921c3?w=800&h=600&fit=crop&q=80', alt: 'Hazaribagh National Park forest' },
+            { url: 'https://images.unsplash.com/photo-1549366021-9f761d040a94?w=800&h=600&fit=crop&q=80', alt: 'Hazaribagh wildlife' },
+            { url: 'https://images.unsplash.com/photo-1425082661705-1834bfd09dca?w=800&h=600&fit=crop&q=80', alt: 'Hazaribagh scenic hills' }
         ],
         tags: ['wildlife', 'forest', 'nature'],
         difficulty: 'easy',
@@ -378,7 +412,9 @@ const destinations = [
             longitude: 85.3207
         },
         images: [
-            { url: 'https://images.unsplash.com/photo-1589553416260-f586c8f1514f?w=800&h=600&fit=crop', alt: 'Kanke Dam' }
+            { url: 'https://images.unsplash.com/photo-1589553416260-f586c8f1514f?w=800&h=600&fit=crop&q=80', alt: 'Kanke Dam sunset' },
+            { url: 'https://images.unsplash.com/photo-1501594907352-04cda38ebc29?w=800&h=600&fit=crop&q=80', alt: 'Kanke Dam lake view' },
+            { url: 'https://images.unsplash.com/photo-1507525428034-b723cf961d3e?w=800&h=600&fit=crop&q=80', alt: 'Kanke Dam boating' }
         ],
         tags: ['nature', 'picnic', 'lake'],
         difficulty: 'easy',
@@ -398,7 +434,9 @@ const destinations = [
             longitude: 85.3524
         },
         images: [
-            { url: 'https://images.unsplash.com/photo-1534567153574-2b12153a87f0?w=800&h=600&fit=crop', alt: 'Birsa Zoological Park' }
+            { url: 'https://images.unsplash.com/photo-1534567153574-2b12153a87f0?w=800&h=600&fit=crop&q=80', alt: 'Birsa Zoological Park animals' },
+            { url: 'https://images.unsplash.com/photo-1549366021-9f761d040a94?w=800&h=600&fit=crop&q=80', alt: 'Birsa Zoo tigers' },
+            { url: 'https://images. unsplash.com/photo-1564760055775-d63b17a55c44?w=800&h=600&fit=crop&q=80', alt: 'Birsa Zoo family visit' }
         ],
         tags: ['wildlife', 'family-friendly', 'zoo'],
         difficulty: 'easy',
@@ -418,7 +456,9 @@ const destinations = [
             longitude: 85.4500
         },
         images: [
-            { url: 'https://images.unsplash.com/photo-1544896598-636611593417?w=800&h=600&fit=crop', alt: 'Sun Temple' }
+            { url: 'https://images.unsplash.com/photo-1544896598-636611593417?w=800&h=600&fit=crop&q=80', alt: 'Sun Temple chariot design' },
+            { url: 'https://images.unsplash.com/photo-1624716723225-4122d1d07c0e?w=800&h=600&fit=crop&q=80', alt: 'Sun Temple architecture' },
+            { url: 'https://images.unsplash.com/photo-1561361513-2d000a50f0dc?w=800&h=600&fit=crop&q=80', alt: 'Sun Temple complex' }
         ],
         tags: ['religious', 'architecture', 'cultural'],
         difficulty: 'easy',
@@ -438,7 +478,9 @@ const destinations = [
             longitude: 86.2500
         },
         images: [
-            { url: 'https://images.unsplash.com/photo-1501785888041-af3ef285b470?w=800&h=600&fit=crop', alt: 'Dimna Lake' }
+            { url: 'https://images.unsplash.com/photo-1501785888041-af3ef285b470?w=800&h=600&fit=crop&q=80', alt: 'Dimna Lake serene view' },
+            { url: 'https://images.unsplash.com/photo-1507525428034-b723cf961d3e?w=800&h=600&fit=crop&q=80', alt: 'Dimna Lake water sports' },
+            { url: 'https://images.unsplash.com/photo-1439066615861-d1af74d74000?w=800&h=600&fit=crop&q=80', alt: 'Dimna Lake hills' }
         ],
         tags: ['nature', 'lake', 'picnic'],
         difficulty: 'easy',
@@ -458,7 +500,9 @@ const destinations = [
             longitude: 87.3000
         },
         images: [
-            { url: 'https://images.unsplash.com/photo-1523585802258-29d9e6eb7b23?w=800&h=600&fit=crop', alt: 'Massanjore Dam' }
+            { url: 'https://images.unsplash.com/photo-1523585802258-29d9e6eb7b23?w=800&h=600&fit=crop&q=80', alt: 'Massanjore Dam aerial view' },
+            { url: 'https://images.unsplash.com/photo-1501594907352-04cda38ebc29?w=800&h=600&fit=crop&q=80', alt: 'Massanjore Dam boating' },
+            { url: 'https://images.unsplash.com/photo-1469474968028-56623f02e42e?w=800&h=600&fit=crop&q=80', alt: 'Massanjore Dam scenic' }
         ],
         tags: ['nature', 'dam', 'picnic'],
         difficulty: 'easy',
@@ -466,6 +510,290 @@ const destinations = [
         duration: '2-3 hours',
         entryFee: 'Free',
         facilities: ['parking', 'boating', 'food']
+    },
+    {
+        title: 'Ranchi Hill',
+        description: 'A historical hill with a temple dedicated to Lord Shiva. Offers panoramic views of Ranchi city.',
+        history: 'The hill has been a landmark since ancient times. The British used it for signaling during their rule.',
+        famousFor: 'Shiva Temple, City Views, Trekking',
+        location: 'Ranchi, Jharkhand',
+        coordinates: { latitude: 23.3645, longitude: 85.3342 },
+        images: [
+            { url: 'https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=800&h=600&fit=crop&q=80', alt: 'Ranchi Hill view' },
+            { url: 'https://images.unsplash.com/photo-1519681393784-d120267933ba?w=800&h=600&fit=crop&q=80', alt: 'Ranchi Hill temple' },
+            { url: 'https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?w=800&h=600&fit=crop&q=80', alt: 'Ranchi Hill panorama' }
+        ],
+        tags: ['trek', 'religious', 'viewpoint', 'nature'],
+        difficulty: 'moderate',
+        bestTime: 'October to March',
+        duration: '2-3 hours',
+        entryFee: 'Free',
+        facilities: ['parking', 'water']
+    },
+    {
+        title: 'McCluskieganj',
+        description: 'A British-era Anglo-Indian settlement known for its colonial architecture and serene environment.',
+        history: 'Founded in 1933 by Ernest Timothy McCluskie for Anglo-Indians. Still retains its colonial charm.',
+        famousFor: 'Colonial Heritage, Churches, Peace',
+        location: 'Ranchi, Jharkhand',
+        coordinates: { latitude: 23.6167, longitude: 85.1333 },
+        images: [
+            { url: 'https://images.unsplash.com/photo-1564501049412-61c2a3083791?w=800&h=600&fit=crop&q=80', alt: 'McCluskieganj colonial architecture' },
+            { url: 'https://images.unsplash.com/photo-1566127444979-b3d2b654e3d7?w=800&h=600&fit=crop&q=80', alt: 'McCluskieganj church' }
+        ],
+        tags: ['historical', 'cultural', 'offbeat'],
+        difficulty: 'easy',
+        bestTime: 'Year-round',
+        duration: '1 day',
+        entryFee: 'Free',
+        facilities: ['accommodation', 'food']
+    },
+    {
+        title: 'Tilaiya Dam',
+        description: 'Built on Barakar River, offers scenic beauty with boating and water sports facilities.',
+        history: 'Constructed in 1953 by DVC for irrigation and power generation.',
+        famousFor: 'Boating, Picnic, Scenic Views',
+        location: 'Koderma, Jharkhand',
+        coordinates: { latitude: 24.3667, longitude: 85.7167 },
+        images: [
+            { url: 'https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=800&h=600&fit=crop&q=80', alt: 'Tilaiya Dam view' },
+            { url: 'https://images.unsplash.com/photo-1501594907352-04cda38ebc29?w=800&h=600&fit=crop&q=80', alt: 'Tilaiya Dam boating' },
+            { url: 'https://images.unsplash.com/photo-1469474968028-56623f02e42e?w=800&h=600&fit=crop&q=80', alt: 'Tilaiya Dam reservoir' }
+        ],
+        tags: ['nature', 'dam', 'boating', 'picnic'],
+        difficulty: 'easy',
+        bestTime: 'October to March',
+        duration: '1 day',
+        entryFee: 'Free',
+        facilities: ['boating', 'food', 'parking']
+    },
+    {
+        title: 'Panchet Dam',
+        description: 'Large dam on Damodar River creating a vast reservoir, ideal for water sports.',
+        history: 'Built in 1959 as part of the Damodar Valley Project.',
+        famousFor: 'Water Sports, Boating, Fishing',
+        location: 'Dhanbad, Jharkhand',
+        coordinates: { latitude: 23.6667, longitude: 86.7333 },
+        images: [
+            { url: 'https://images.unsplash.com/photo-1501594907352-04cda38ebc29?w=800&h=600&fit=crop&q=80', alt: 'Panchet Dam water view' },
+            { url: 'https://images.unsplash.com/photo-1469474968028-56623f02e42e?w=800&h=600&fit=crop&q=80', alt: 'Panchet Dam boats' },
+            { url: 'https://images.unsplash.com/photo-1507525428034-b723cf961d3e?w=800&h=600&fit=crop&q=80', alt: 'Panchet Dam fishing' }
+        ],
+        tags: ['nature', 'dam', 'adventure'],
+        difficulty: 'easy',
+        bestTime: 'Year-round',
+        duration: '1 day',
+        entryFee: 'Free',
+        facilities: ['boating', 'parking', 'food']
+    },
+    {
+        title: 'Topchanchi Lake',
+        description: 'A beautiful lake surrounded by hills, popular for picnics and boating.',
+        history: 'Natural lake developed as a tourist spot in the 1960s.',
+        famousFor: 'Lake, Boating, Hills',
+        location: 'Dhanbad, Jharkhand',
+        coordinates: { latitude: 23.8833, longitude: 86.3833 },
+        images: [
+            { url: 'https://images.unsplash.com/photo-1439066615861-d1af74d74000?w=800&h=600&fit=crop&q=80', alt: 'Topchanchi Lake hills' },
+            { url: 'https://images.unsplash.com/photo-1507525428034-b723cf961d3e?w=800&h=600&fit=crop&q=80', alt: 'Topchanchi Lake boating' },
+            { url: 'https://images.unsplash.com/photo-1501785888041-af3ef285b470?w=800&h=600&fit=crop&q=80', alt: 'Topchanchi Lake scenic' }
+        ],
+        tags: ['nature', 'lake', 'picnic'],
+        difficulty: 'easy',
+        bestTime: 'October to March',
+        duration: '1 day',
+        entryFee: 'Free',
+        facilities: ['boating', 'food', 'parking']
+    },
+    {
+        title: 'Palkot Wildlife Sanctuary',
+        description: 'A lesser-known sanctuary with diverse flora and fauna in dense forests.',
+        history: 'Established to protect the biodiversity of the Palkot region.',
+        famousFor: 'Wildlife, Trekking, Bird Watching',
+        location: 'Gumla, Jharkhand',
+        coordinates: { latitude: 23.2333, longitude: 84.6833 },
+        images: [
+            { url: 'https://images.unsplash.com/photo-1425082661705-1834bfd09dca?w=800&h=600&fit=crop&q=80', alt: 'Palkot Wildlife Sanctuary forest' },
+            { url: 'https://images.unsplash.com/photo-1549366021-9f761d040a94?w=800&h=600&fit=crop&q=80', alt: 'Palkot  wildlife' },
+            { url: 'https://images.unsplash.com/photo-1518709766631-a6a7f45921c3?w=800&h=600&fit=crop&q=80', alt: 'Palkot bird watching' }
+        ],
+        tags: ['wildlife', 'forest', 'trek', 'offbeat'],
+        difficulty: 'moderate',
+        bestTime: 'November to March',
+        duration: '1 day',
+        entryFee: '₹50',
+        facilities: ['guide']
+    },
+    {
+        title: 'Chandil Dam',
+        description: 'Scenic dam providing irrigation and drinking water, popular picnic spot.',
+        history: 'Constructed on Subarnarekha River in 1982.',
+        famousFor: 'Dam, Boating, Scenic Beauty',
+        location: 'Seraikela-Kharsawan, Jharkhand',
+        coordinates: { latitude: 22.9667, longitude: 86.0500 },
+        images: [
+            { url: 'https://images.unsplash.com/photo-1469474968028-56623f02e42e?w=800&h=600&fit=crop&q=80', alt: 'Chandil Dam view' },
+            { url: 'https://images.unsplash.com/photo-1501594907352-04cda38ebc29?w=800&h=600&fit=crop&q=80', alt: 'Chandil Dam water' },
+            { url: 'https://images.unsplash.com/photo-1507525428034-b723cf961d3e?w=800&h=600&fit=crop&q=80', alt: 'Chandil Dam scenic' }
+        ],
+        tags: ['nature', 'dam', 'picnic'],
+        difficulty: 'easy',
+        bestTime: 'Year-round',
+        duration: '2-3 hours',
+        entryFee: 'Free',
+        facilities: ['parking', 'food']
+    },
+    {
+        title: 'Tata Steel Zoological Park',
+        description: 'Well-maintained zoo with diverse animal species in natural habitats.',
+        history: 'Established by Tata Steel as part of corporate social responsibility.',
+        famousFor: 'Zoo, Wildlife Conservation',
+        location: 'Jamshedpur, Jharkhand',
+        coordinates: { latitude: 22.8046, longitude: 86.2029 },
+        images: [
+            { url: 'https://images.unsplash.com/photo-1564760055775-d63b17a55c44?w=800&h=600&fit=crop&q=80', alt: 'Tata Steel Zoo animals' },
+            { url: 'https://images.unsplash.com/photo-1549366021-9f761d040a94?w=800&h=600&fit=crop&q=80', alt: 'Tata Zoo wildlife' },
+            { url: 'https://images.unsplash.com/photo-1534567153574-2b12153a87f0?w=800&h=600&fit=crop&q=80', alt: 'Tata Zoo visit' }
+        ],
+        tags: ['wildlife', 'family-friendly', 'zoo'],
+        difficulty: 'easy',
+        bestTime: 'Year-round',
+        duration: '3-4 hours',
+        entryFee: '₹25',
+        facilities: ['parking', 'food', 'restroom']
+    },
+    {
+        title: 'Ranchi Lake',
+        description: 'Artificial lake in the heart of Ranchi, perfect for evening walks and boating.',
+        history: 'Built by Colonel Onsely in 1842.',
+        famousFor: 'Boating, Sunset Views',
+        location: 'Ranchi, Jharkhand',
+        coordinates: { latitude: 23.3441, longitude: 85.3096 },
+        images: [
+            { url: 'https://images.unsplash.com/photo-1507525428034-b723cf961d3e?w=800&h=600&fit=crop&q=80', alt: 'Ranchi Lake boating' },
+            { url: 'https://images.unsplash.com/photo-1501785888041-af3ef285b470?w=800&h=600&fit=crop&q=80', alt: 'Ranchi Lake sunset' },
+            { url: 'https://images.unsplash.com/photo-1439066615861-d1af74d74000?w=800&h=600&fit=crop&q=80', alt: 'Ranchi Lake view' }
+        ],
+        tags: ['nature', 'lake', 'picnic'],
+        difficulty: 'easy',
+        bestTime: 'Year-round',
+        duration: '1-2 hours',
+        entryFee: 'Free',
+        facilities: ['boating', 'food', 'parking']
+    },
+    {
+        title: 'Rock Garden Ranchi',
+        description: 'Beautiful garden with rock formations, waterfalls, and landscaping.',
+        history: 'Developed as a tourist attraction showcasing natural rock formations.',
+        famousFor: 'Rock Formations, Gardens, Waterfalls',
+        location: 'Ranchi, Jharkhand',
+        coordinates: { latitude: 23.4131, longitude: 85.4394 },
+        images: [
+            { url: 'https://images.unsplash.com/photo-1585320806297-9794b3e4eeae?w=800&h=600&fit=crop&q=80', alt: 'Rock Garden formations' },
+            { url: 'https://images.unsplash.com/photo-1544551763-46a013bb70d5?w=800&h=600&fit=crop&q=80', alt: 'Rock Garden waterfall' },
+            { url: 'https://images.unsplash.com/photo-1426604966848-d7adac402bff?w=800&h=600&fit=crop&q=80', alt: 'Rock Garden landscaping' }
+        ],
+        tags: ['nature', 'family-friendly', 'photography'],
+        difficulty: 'easy',
+        bestTime: 'Year-round',
+        duration: '2-3 hours',
+        entryFee: '₹30',
+        facilities: ['parking', 'food', 'restroom']
+    },
+    {
+        title: 'Hirni Falls',
+        description: 'Picturesque waterfall surrounded by dense forests, ideal for nature lovers.',
+        history: 'Natural waterfall in a remote forest location.',
+        famousFor: 'Waterfall, Nature, Trek',
+        location: 'Ranchi, Jharkhand',
+        coordinates: { latitude: 23.2500, longitude: 85.5833 },
+        images: [
+            { url: 'https://images.unsplash.com/photo-1432405972618-c60b0225b8f9?w=800&h=600&fit=crop&q=80', alt: 'Hirni Falls waterfall' },
+            { url: 'https://images.unsplash.com/photo-1433086966358-54859d0ed716?w=800&h=600&fit=crop&q=80', alt: 'Hirni Falls trek' },
+            { url: 'https://images.unsplash.com/photo-1426604966848-d7adac402bff?w=800&h=600&fit=crop&q=80', alt: 'Hirni Falls forest' }
+        ],
+        tags: ['waterfall', 'nature', 'trek'],
+        difficulty: 'moderate',
+        bestTime: 'August to February',
+        duration: '1 day',
+        entryFee: 'Free',
+        facilities: ['none']
+    },
+    {
+        title: 'Panch Gagh Falls',
+        description: 'Five streams converging to form a spectacular waterfall in monsoon.',
+        history: 'Natural formation where five streams meet.',
+        famousFor: 'Unique Formation, Monsoon Beauty',
+        location: 'Khunti, Jharkhand',
+        coordinates: { latitude: 23.0667, longitude: 85.2833 },
+        images: [
+            { url: 'https://images.unsplash.com/photo-1432405972618-c60b0225b8f9?w=800&h=600&fit=crop&q=80', alt: 'Panch Gagh Falls five streams' },
+            { url: 'https://images.unsplash.com/photo-1433086966358-54859d0ed716?w=800&h=600&fit=crop&q=80', alt: 'Panch Gagh Falls monsoon' },
+            { url: 'https://images.unsplash.com/photo-1426604966848-d7adac402bff?w=800&h=600&fit=crop&q=80', alt: 'Panch Gagh Falls cascade' }
+        ],
+        tags: ['waterfall', 'nature', 'trek', 'offbeat'],
+        difficulty: 'difficult',
+        bestTime: 'July to October',
+        duration: '1 day',
+        entryFee: 'Free',
+        facilities: ['none']
+    },
+    {
+        title: 'Sita Falls',
+        description: 'Beautiful waterfall with religious significance, named after Goddess Sita.',
+        history: 'Local legends connect it to Ramayana era.',
+        famousFor: 'Waterfall, Religious Site',
+        location: 'Gumla, Jharkhand',
+        coordinates: { latitude: 23.0167, longitude: 84.5500 },
+        images: [
+            { url: 'https://images.unsplash.com/photo-1432405972618-c60b0225b8f9?w=800&h=600&fit=crop&q=80', alt: 'Sita Falls waterfall' },
+            { url: 'https://images.unsplash.com/photo-1433086966358-54859d0ed716?w=800&h=600&fit=crop&q=80', alt: 'Sita Falls natural beauty' },
+            { url: 'https://images.unsplash.com/photo-1426604966848-d7adac402bff?w=800&h=600&fit=crop&q=80', alt: 'Sita Falls religious site' }
+        ],
+        tags: ['waterfall', 'religious', 'nature'],
+        difficulty: 'moderate',
+        bestTime: 'August to March',
+        duration: '1 day',
+        entryFee: 'Free',
+        facilities: ['parking']
+    },
+    {
+        title: 'Usri Falls',
+        description: 'Year-round waterfall in Giridih district, popular among locals.',
+        history: 'Natural waterfall formation in forested area.',
+        famousFor: 'Waterfall, Picnic',
+        location: 'Giridih, Jharkhand',
+        coordinates: { latitude: 24.0833, longitude: 86.2667 },
+        images: [
+            { url: 'https://images.unsplash.com/photo-1432405972618-c60b0225b8f9?w=800&h=600&fit=crop&q=80', alt: 'Usri Falls year-round view' },
+            { url: 'https://images.unsplash.com/photo-1433086966358-54859d0ed716?w=800&h=600&fit=crop&q=80', alt: 'Usri Falls picnic spot' },
+            { url: 'https://images.unsplash.com/photo-1426604966848-d7adac402bff?w=800&h=600&fit=crop&q=80', alt: 'Usri Falls surroundings' }
+        ],
+        tags: ['waterfall', 'nature', 'picnic'],
+        difficulty: 'easy',
+        bestTime: 'Year-round',
+        duration: '3-4 hours',
+        entryFee: 'Free',
+        facilities: ['parking', 'food']
+    },
+    {
+        title: 'Getalsud Dam',
+        description: 'Large reservoir with boating facilities and scenic surroundings.',
+        history: 'Built for irrigation and water supply.',
+        famousFor: 'Boating, Scenic Views',
+        location: 'Ranchi, Jharkhand',
+        coordinates: { latitude: 23.3167, longitude: 85.6000 },
+        images: [
+            { url: 'https://images.unsplash.com/photo-1501594907352-04cda38ebc29?w=800&h=600&fit=crop&q=80', alt: 'Getalsud Dam reservoir' },
+            { url: 'https://images.unsplash.com/photo-1469474968028-56623f02e42e?w=800&h=600&fit=crop&q=80', alt: 'Getalsud Dam boating' },
+            { url: 'https://images.unsplash.com/photo-1507525428034-b723cf961d3e?w=800&h=600&fit=crop&q=80', alt: 'Getalsud Dam scenic view' }
+        ],
+        tags: ['nature', 'dam', 'boating'],
+        difficulty: 'easy',
+        bestTime: 'October to March',
+        duration: '2-3 hours',
+        entryFee: 'Free',
+        facilities: ['boating', 'parking', 'food']
     }
 ];
 

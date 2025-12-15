@@ -42,7 +42,7 @@ const Destinations = () => {
     try {
       setLoading(true);
       const params = {
-        limit: 12,
+        limit: 50,
         ...(searchTerm && { search: searchTerm }),
         ...(selectedTags.length > 0 && { tags: selectedTags.join(',') })
       };
